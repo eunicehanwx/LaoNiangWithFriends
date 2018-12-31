@@ -1,16 +1,4 @@
-<?php
-$username = "root";
-$password = "12345";
-$hostname = "104.155.216.50:3306";
-$dbname = "laoniangdb";
-
-//connection to the database
-$dbhandle = mysqli_connect($hostname, $username, $password, $dbname)
-or die("Unable to connect to MySQL");
-//session_start();
-
-echo "Connected to MySQL<br>";
-?>
+<?php include('server.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,49 +46,40 @@ echo "Connected to MySQL<br>";
 
         <!--<div class="card-header">Register an Account</div>-->
         <div class="card-body">
-          <form>
+          <form method="post" action="register.php">
             <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                    <label for="firstName">First name</label>
-                  </div>
+                <div class="form-label-group">
+                    <input type="text" name="admin_username" id="adminUsername" class="form-control" placeholder="User name" required="required" autofocus="autofocus">
+                    <label for="admin_username">User name</label>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
-                    <label for="lastName">Last name</label>
-                  </div>
-                </div>
-              </div>
             </div>
+
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-                <label for="inputEmail">Email address</label>
+                <input type="email" name="admin_email" id="adminInputEmail" class="form-control" placeholder="Email address" required="required">
+                <label for="admin_email">Email address</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                    <label for="inputPassword">Password</label>
+                    <input type="password" name="admin_inputpassword" id="adminInputPassword" class="form-control" placeholder="Password" required="required">
+                    <label for="admin_inputpassword">Password</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                    <label for="confirmPassword">Confirm password</label>
+                    <input type="password" name="admin_confirmpassword" id="adminConfirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                    <label for="admin_confirmpassword">Confirm password</label>
                   </div>
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="login.html">Register</a>
+            <button class="btn btn-primary btn-block" name="reg_user">Register</button>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.html">Login Page</a>
+            <a class="d-block small mt-3" href="login.php">Login Page</a>
             <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
           </div>
         </div>

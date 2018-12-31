@@ -1,3 +1,5 @@
+<?php include('server.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,17 +43,17 @@
         <img src="../lib/LNWF_logo2.png" class="center"/>
         <!--<div class="card-header">Login</div>-->
         <div class="card-body">
-          <form>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email address</label>
+          <form method="post" action="login.php">
+              <div class="form-group">
+                  <div class="form-label-group">
+                      <input type="text" name="admin_username" id="adminUsername" class="form-control" placeholder="User name" required="required" autofocus="autofocus">
+                      <label for="admin_username">User name</label>
+                  </div>
               </div>
-            </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                <label for="inputPassword">Password</label>
+                  <input type="password" name="admin_inputpassword" id="adminInputPassword" class="form-control" placeholder="Password" required="required">
+                  <label for="admin_inputpassword">Password</label>
               </div>
             </div>
             <div class="form-group">
@@ -62,7 +64,7 @@
                 </label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.html">Login</a>
+            <button class="btn btn-primary btn-block" name="login_user">Login</button>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="register.php">Register an Account</a>
