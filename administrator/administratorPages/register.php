@@ -1,3 +1,17 @@
+<?php
+$username = "root";
+$password = "12345";
+$hostname = "104.155.216.50:3306";
+$dbname = "laoniangdb";
+
+//connection to the database
+$dbhandle = mysqli_connect($hostname, $username, $password, $dbname)
+or die("Unable to connect to MySQL");
+//session_start();
+
+echo "Connected to MySQL<br>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
