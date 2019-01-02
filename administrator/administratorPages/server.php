@@ -18,29 +18,15 @@ $errors = array();
 if (isset($_POST['reg_user'])) {
     // receive all input values from the form
     $admin_username = mysqli_real_escape_string($db, $_POST['admin_username']);
-//    echo $username;
     $admin_email = mysqli_real_escape_string($db, $_POST['admin_email']);
     $admin_password_1 = mysqli_real_escape_string($db, $_POST['admin_inputpassword']);
     $admin_password_2 = mysqli_real_escape_string($db, $_POST['admin_confirmpassword']);
 
     // form validation: ensure that the form is correctly filled ...
-    // by adding (array_push()) corresponding error unto $errors array
-//    if (empty($admin_username)) {
-////        array_push($errors, "Username is required");
-//        echo "admin username empty";
-//
-//    }
-//    if (empty($email)) { array_push($errors, "Email is required"); }
-//    if (empty($password_1)) { array_push($errors, "Password is required"); }
-//    if (empty($password_2)) { array_push($errors, "Password is required"); }
     if ($admin_password_1 != $admin_password_2) {
         array_push($errors, "The two passwords do not match");
 //        echo "does not match";
         header('location: register.php?errorpassw=1');
-
-
-//        $message = "password does not match";
-//        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 
     // first check the database to make sure
@@ -50,16 +36,16 @@ if (isset($_POST['reg_user'])) {
     $user = mysqli_fetch_assoc($result);
 //
     if ($user) { // if user exists
-        if ($user['admin_name'] === $admin_username) {
-            array_push($errors, "Admin username already exists");
-//            echo "username exists";
-            header('location: register.php?errorusern=1');
-        }
-
         if ($user['admin_email'] === $admin_email) {
             array_push($errors, "Admin email already exists");
 //            echo "email exists";
             header('location: register.php?erroremail=1');
+        }
+
+        if ($user['admin_name'] === $admin_username) {
+            array_push($errors, "Admin username already exists");
+//            echo "username exists";
+            header('location: register.php?errorusern=1');
         }
     }
 
@@ -98,7 +84,7 @@ if (isset($_POST['reg_user'])) {
             if (mysqli_num_rows($results) == 1) {
                 $_SESSION['admin_name'] = $admin_username;
                 $_SESSION['success'] = "You are now logged in";
-                header('location: index.html');
+                header('location: index.php');
             }else {
                 array_push($errors, "Wrong username/password combination");
 //                echo "no admin existed";
