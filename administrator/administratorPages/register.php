@@ -76,6 +76,19 @@
                 </div>
               </div>
             </div>
+              <?php
+              if(isset($_GET['errorusern'])==true) {
+                  echo '<font color="#FF0000"><p align="center">Username taken</p></font>';
+              }
+
+              if(isset($_GET['erroremail'])==true) {
+                  echo '<font color="#FF0000"><p align="center">Email has already been registered</p></font>';
+              }
+
+              if(isset($_GET['errorpassw'])==true) {
+                  echo '<font color="#FF0000"><p align="center">Password does not match</p></font>';
+              }
+              ?>
             <button class="btn btn-primary btn-block" name="reg_user">Register</button>
           </form>
           <div class="text-center">

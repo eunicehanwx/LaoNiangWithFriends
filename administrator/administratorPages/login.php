@@ -64,6 +64,11 @@
                 </label>
               </div>
             </div>
+              <?php
+              if(isset($_GET['error'])==true) {
+                  echo '<font color="#FF0000"><p align="center">Wrong username/password combination</p></font>';
+              }
+              ?>
             <button class="btn btn-primary btn-block" name="login_user">Login</button>
           </form>
           <div class="text-center">

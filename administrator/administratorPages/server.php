@@ -35,10 +35,12 @@ if (isset($_POST['reg_user'])) {
 //    if (empty($password_2)) { array_push($errors, "Password is required"); }
     if ($admin_password_1 != $admin_password_2) {
         array_push($errors, "The two passwords do not match");
-        echo "does not match";
+//        echo "does not match";
+        header('location: register.php?errorpassw=1');
 
-        $message = "password does not match";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+
+//        $message = "password does not match";
+//        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 
     // first check the database to make sure
@@ -50,12 +52,14 @@ if (isset($_POST['reg_user'])) {
     if ($user) { // if user exists
         if ($user['admin_name'] === $admin_username) {
             array_push($errors, "Admin username already exists");
-            echo "username exists";
+//            echo "username exists";
+            header('location: register.php?errorusern=1');
         }
 
         if ($user['admin_email'] === $admin_email) {
             array_push($errors, "Admin email already exists");
-            echo "email exists";
+//            echo "email exists";
+            header('location: register.php?erroremail=1');
         }
     }
 
@@ -97,7 +101,8 @@ if (isset($_POST['reg_user'])) {
                 header('location: index.html');
             }else {
                 array_push($errors, "Wrong username/password combination");
-                echo "no admin existed";
+//                echo "no admin existed";
+                header('location: login.php?error=1');
             }
         }
     }
