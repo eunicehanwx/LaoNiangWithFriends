@@ -25,16 +25,20 @@ if (isset($_POST['reg_user'])) {
 
     // form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
-    if (empty($admin_username)) {
-//        array_push($errors, "Username is required");
-        echo "admin username empty";
-    }
+//    if (empty($admin_username)) {
+////        array_push($errors, "Username is required");
+//        echo "admin username empty";
+//
+//    }
 //    if (empty($email)) { array_push($errors, "Email is required"); }
 //    if (empty($password_1)) { array_push($errors, "Password is required"); }
 //    if (empty($password_2)) { array_push($errors, "Password is required"); }
     if ($admin_password_1 != $admin_password_2) {
         array_push($errors, "The two passwords do not match");
         echo "does not match";
+
+        $message = "password does not match";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 
     // first check the database to make sure
