@@ -84,7 +84,7 @@ if (isset($_POST['reg_user'])) {
             if (mysqli_num_rows($results) == 1) {
                 $_SESSION['admin_name'] = $admin_username;
                 $_SESSION['success'] = "You are now logged in";
-                header('location: index.php');
+                header('location: dashboard.html');
             }else {
                 array_push($errors, "Wrong username/password combination");
 //                echo "no admin existed";
