@@ -160,7 +160,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>Activity Name</th>
@@ -169,18 +169,22 @@
                                 <th>Event Description</th>
                                 <th>Event Date</th>
                                 <th>Event Time</th>
+                                <th>Status</th>
+                                <th></th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Activity Name</th>
-                                <th>Client ID</th>
-                                <th>Event Category</th>
-                                <th>Event Description</th>
-                                <th>Event Date</th>
-                                <th>Event Time</th>
-                            </tr>
-                            </tfoot>
+<!--                            <tfoot>-->
+<!--                            <tr>-->
+<!--                                <th>Activity Name</th>-->
+<!--                                <th>Client ID</th>-->
+<!--                                <th>Event Category</th>-->
+<!--                                <th>Event Description</th>-->
+<!--                                <th>Event Date</th>-->
+<!--                                <th>Event Time</th>-->
+<!--                                <th>Status</th>-->
+<!--                                <th></th>-->
+<!--                            </tr>-->
+<!--                            </tfoot>-->
                             <tbody>
 <!--                                <tr>-->
 <!--                                    <td>Christmas Dinner</td>-->
@@ -194,21 +198,164 @@
                                 $query = "SELECT * FROM activity;";
 
                                 $dave = mysqli_query($db, $query) or die(mysqli_error());
-
+//                                $row = mysqli_fetch_assoc($dave);
+//                                onclick="document.location='blank.html'"
                                 while ($row = mysqli_fetch_assoc($dave)) {
-                                    echo "<tr onclick=\"document.location='blank.html'\">
+                                    echo "<tr >
                                                       <td>" . $row["activity_name"] . "</td>
                                                       <td>" . $row["client_id"] . "</td>
                                                       <td>" . $row["activity_category"] . "</td>
                                                       <td>" . $row["activity_desc"] . "</td>
                                                       <td>" . $row["activity_date"] . "</td>
                                                       <td>" . $row["activity_time"] . "</td>
+                                                      <td>" . $row["activity_status"] . "</td>
+                                                      <td>
+                                                            <!-- Button trigger modal -->
+                                                            <button id=" . $row["activity_id"] . " onclick='showDetails(this);' class = \"btn btn-primary btn-lg\" data-toggle = \"modal\" data-target = \"#myModal\">
+                                                                Details
+                                                            </button>
+                                                        </td>
                                           </tr>";
 
                                 }
                                 ?>
+
                             </tbody>
                         </table>
+
+                        <!-- Modal -->
+                        <div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+                             aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+                            <div class = "modal-dialog">
+                                <div class = "modal-content">
+
+                                    <div class = "modal-header">
+                                        <h4 class = "modal-title" id = "myModalLabel">
+<!--                                            This Modal title-->
+                                            <span id="activity_name_title"></span>
+                                        </h4>
+
+                                        <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                                            &times;
+                                        </button>
+                                    </div>
+
+                                    <div class = "modal-body">
+                                        <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>
+<!--                                        <p>Activity Name: <span id="activity_name"></span></p>-->
+<!--                                        <p>Category: <span id="activity_category"></span></p>-->
+<!--                                        <p>Venue: </p><span id="activity_venue"></span>-->
+<!--                                        <p>Date: <span id="activity_date"></span></p>-->
+<!--                                        <p>Time: <span id="activity_time"></span></p>-->
+<!--                                        <p>Fees: <span id="activity_fees"></span></p>-->
+<!--                                        <p>Contact No.: <input type="text" id="activity_mobile_num"></span></p>-->
+<!--                                        <p>Contact No.: <span id="activity_mobile_num"></span></p>-->
+<!--                                        <p>Description: <textarea id="activity_desc"></textarea></p>-->
+
+                                        <form method="post" action="login.php">
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Activity name" required="required" autofocus="autofocus">
+                                                    <label for="activity_name">Activity name</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_category" id="activity_category" class="form-control" placeholder="Activity category" required="required">
+                                                    <label for="activity_category">Category</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_venue" id="activity_venue" class="form-control" placeholder="Activity venue" required="required">
+                                                    <label for="activity_venue">Venue</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="date" name="activity_date" id="activity_date" class="form-control" placeholder="Activity date" required="required">
+                                                    <label for="activity_date">Date</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_time" id="activity_time" class="form-control" placeholder="Activity time" required="required">
+                                                    <label for="activity_time">Time</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_fees" id="activity_fees" class="form-control" placeholder="Activity fees" required="required">
+                                                    <label for="activity_fees">Fees ($)</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_mobile_num" id="activity_mobile_num" class="form-control" placeholder="Activity contact number" required="required">
+                                                    <label for="activity_mobile_num">Contact Number</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="text" name="activity_desc" id="activity_desc" class="form-control" placeholder="Activity description" required="required">
+                                                    <label for="activity_desc">Description of Activity</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class = "modal-footer">
+                                        <button type = "button" class = "btn btn-default" data-dismiss = "modal">
+                                            Close
+                                        </button>
+
+                                        <button type = "button" class = "btn btn-primary">
+                                            Submit changes
+                                        </button>
+                                    </div>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+
+                        </div><!-- /.modal -->
+                        <script>
+                            function showDetails(button) {
+                                var activity_id = button.id;
+                                //AJAX call to get activity_id details
+                                $.ajax({
+                                   url: "activityDetails.php",
+                                   method: "GET",
+                                   data: {"activity_id": activity_id},
+                                   success: function(response) {
+                                       // alert(response);
+                                       var activity = JSON.parse(response);
+
+                                       // $("#activity_name_title").text(activity.activity_name);
+                                       // $("#activity_name").text(activity.activity_name);
+                                       // $("#activity_category").text(activity.activity_category);
+                                       // $("#activity_venue").text(activity.activity_venue);
+                                       // $("#activity_date").text(activity.activity_date);
+                                       // $("#activity_time").text(activity.activity_time);
+                                       // $("#activity_fees").text(activity.activity_fees);
+                                       // $("#activity_mobile_num").text(activity.activity_mobile_num);
+                                       // $("#activity_desc").text(activity.activity_desc);
+
+                                       $("#activity_name_title").text(activity.activity_name);
+                                       $("#activity_name_title").val(activity.activity_name);
+                                       $("#activity_name").val(activity.activity_name);
+                                       $("#activity_category").val(activity.activity_category);
+                                       $("#activity_venue").val(activity.activity_venue);
+                                       $("#activity_date").val(activity.activity_date);
+                                       $("#activity_time").val(activity.activity_time);
+                                       $("#activity_fees").val(activity.activity_fees);
+                                       $("#activity_mobile_num").val(activity.activity_mobile_num);
+                                       $("#activity_desc").val(activity.activity_desc);
+                                   }
+
+                                });
+                            }
+                        </script>
                     </div>
                 </div>
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
