@@ -44,27 +44,14 @@
             $this->load->view('blog/index', $arrayData);
         }
 
-        function get_activity_details()
+        public function activitydetails()
         {
-            $actid = $this->input->post('actid');
+            $actid = $this->input-> post('activity_id');
+            $this->load->model('Blogmodel');
             $records = $this->Blogmodel->get_activity_details($actid);
-            $output = '';
-            foreach ($records->result_array() as $row) {
-                $output .= '
-                <h4 class="text-center">' . $row["activityname"] . '</h4><br>
-         <div class="row">
-             <div class="col-lg-6">
-                  <table class="table table-bordered">
-                   <tr>
-                    <td><b>RAM</b></td>
-                    <td>' . $row["activitydesc"] . '</td>
-                   </tr>                      
-             </div>
-             <div class="col-lg-6">
-             </div>
-         </div> ';
-                echo $output;
-            }
+            $activity = $records;
+
+            echo json_encode($activity);
 
 //            $this->load->model('Blogmodel');
 //            $activitydetails = $this->Blogmodel->get_activity_details($actid);
