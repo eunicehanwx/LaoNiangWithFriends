@@ -13,6 +13,7 @@ class Blogmodel extends CI_Model{
 
 	function get_articles_list(){
 		$this->db->select('activity_name');
+        $this->db->select('activity_id');
 		$this->db->select('activity_venue');
 		$this->db->select('activity_time');
 		$this->db->select('activity_date');
@@ -24,6 +25,7 @@ class Blogmodel extends CI_Model{
 		for ($i=0; $i<count($result); $i++)
 		{
 			$list[$i] = (object)NULL;
+            $list[$i]->activityid = $result[$i]->activity_id;
 			$list[$i]->activityname = $result[$i]->activity_name;
 			$list[$i]->activityvenue = $result[$i]->activity_venue;
 			$list[$i]->activitytime = $result[$i]->activity_time;
@@ -33,5 +35,54 @@ class Blogmodel extends CI_Model{
 		}
 		return $list;
 	}
+    function get_articles_venue($field){
+        $this->db->like('activity_venue',$field);
+        $query = $this->db->get("activity");
+        $result = $query->result();
+        $list = Array();
+        for ($i=0; $i<count($result); $i++)
+        {
+            $list[$i] = (object)NULL;
+            $list[$i]->activityid = $result[$i]->activity_id;
+            $list[$i]->activityname = $result[$i]->activity_name;
+            $list[$i]->activityvenue = $result[$i]->activity_venue;
+            $list[$i]->activitytime = $result[$i]->activity_time;
+            $list[$i]->activitydate = $result[$i]->activity_date;
+            $list[$i]->activitydesc = $result[$i]->activity_desc;
+            $list[$i]->activitfees = $result[$i]->activity_fees;
+        }
+        return $list;
+    }
+
+    function get_distinct_venue_list(){
+        $this->db->distinct('activity_venue');
+        $query = $this->db->get("activity");
+        $result = $query->result();
+        $list = Array();
+        for ($i=0; $i<count($result); $i++) {
+            $list[$i] = (object)NULL;
+            $list[$i]->activityvenue= $result[$i]->activity_venue;
+        }
+        return $list;
+    }
+
+    function get_activity_details($actid){
+        $this->db->like('activity_id',$actid);
+        $query = $this->db->get("activity");
+        $result = $query->result();
+        $list = Array();
+        for ($i=0; $i<count($result); $i++)
+        {
+            $list[$i] = (object)NULL;
+            $list[$i]->activityid = $result[$i]->activity_id;
+            $list[$i]->activityname = $result[$i]->activity_name;
+            $list[$i]->activityvenue = $result[$i]->activity_venue;
+            $list[$i]->activitytime = $result[$i]->activity_time;
+            $list[$i]->activitydate = $result[$i]->activity_date;
+            $list[$i]->activitydesc = $result[$i]->activity_desc;
+            $list[$i]->activitfees = $result[$i]->activity_fees;
+        }
+        return $list;
+    }
 }
 ?>

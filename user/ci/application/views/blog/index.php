@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
   <head>
 
@@ -67,7 +67,37 @@
       <div class="container">
         <h2 class="text-center text-uppercase text-secondary mb-0">Portfolio</h2>
         <hr class="star-dark mb-5">
+          <form class="form-inline" action="" method="post" style="font-size:15pt;">
+              <select name="field" >
+                  <option selected="selected" disabled="disabled" value="">Filter By</option>
+                  <option value="">All</option>
+                  <?php foreach($dropdownvenue as $venue) {
+                      ?>
+                      <option value="<?php echo $venue->activityvenue; ?>"><?php echo $venue->activityvenue;?></option>
+                      <?php
+                  }
+                  ?>
+              </select>
+              <input class="btn btn-default" type="submit" name="filter" value="Go" style="font-size:20pt;">
+          </form>
         <div class="row">
+            <?php foreach($articles as $article) {
+            ?>
+              <div class="col-md-6 col-lg-4">
+            	<input type="button" class="portfolio-item d-block mx-auto" value="View Info" onclick="showDetails(this);" id="<?php echo $article->activityid; ?>">
+                  <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+            	    <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+            	        <i class="fas fa-search-plus fa-3x"></i>
+            		</div>
+                  </div>
+                  <h3><?php echo $article->activityname; ?></h3>
+                </input>
+              </div>
+            <?php
+            }
+            ?>
+            <!--                    --><?php //echo base_url()."index.php/Blog/Gonewpage/"; ?>
+
           <div class="col-md-6 col-lg-4">
             <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
@@ -128,6 +158,7 @@
               <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/submarine.png');?>" alt="">
             </a>
           </div>
+
         </div>
       </div>
     </section>
@@ -266,7 +297,58 @@
 
     <!-- Portfolio Modals -->
 
-    <!-- Portfolio Modal 1 -->
+    <!-- Portfolio Modal 0 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-0">
+        <div class="portfolio-modal-dialog bg-white">
+            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <i class="fa fa-3x fa-times"></i>
+            </a>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+                        <hr class="star-dark mb-5">
+                        <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cabin.png');?>" alt="">
+                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                        <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                            <i class="fa fa-close"></i>
+                            Close Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Start jQuery function after page is loaded
+        function showDetails(button){
+            // Initiate DataTable function comes with plugin
+            // $('#dataTable').DataTable();
+            // Start jQuery click function to view Bootstrap modal when view info button is clicked
+            // $('.view_data').click(function(){
+                // Get the id of selected phone and assign it in a variable called phoneData
+                var actid = button.id;
+                // Start AJAX function
+                $.ajax({
+                    // Path for controller function which fetches selected phone data
+                    url: "<?=site_url("Blog/get_activity_details")?>",
+                    // Method of getting data
+                    method: "POST",
+                    // Data is sent to the server
+                    data: {actid:actid},
+                    // Callback function that is executed after data is successfully sent and recieved
+                    success: function(data){
+                        // Print the fetched data of the selected phone in the section called #phone_result
+                        // within the Bootstrap modal
+                        $('#phone_result').html(data);
+                        // Display the Bootstrap modal
+                        $('#portfolio-modal-0').modal('show');
+                    }
+                });
+                // End AJAX function
+        };
+    </script>
+        <!-- Portfolio Modal 1 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
       <div class="portfolio-modal-dialog bg-white">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
@@ -412,6 +494,8 @@
 
     <!-- Custom scripts for this template -->
     <script src="<?php echo base_url('assets/ui_user/js/freelancer.min.js'); ?>"></script>
+
+
 
   </body>
 
