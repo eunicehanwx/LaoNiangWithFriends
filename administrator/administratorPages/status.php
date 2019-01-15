@@ -101,12 +101,15 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="dashboard.html">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item dropdown">
+
+<!--        list of icons:     http://victor-valencia.github.io/bootstrap-iconpicker/-->
+
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-fw fa-folder"></i>
@@ -114,7 +117,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                 <h6 class="dropdown-header">Login Screens:</h6>
-                <a class="dropdown-item" href="login.html">Login</a>
+                <a class="dropdown-item" href="login.php">Login</a>
                 <a class="dropdown-item" href="register.php">Register</a>
                 <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
                 <div class="dropdown-divider"></div>
@@ -135,8 +138,13 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="status.php">
-                <!--<i class="fas fa-fw fa-table"></i>-->
+                <i class="fas fa-th-list"></i>
                 <span>Review requests</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="createActivity.php">
+                <i class="fab fa-wpforms"></i>
+                <span>Create New Activity</span></a>
         </li>
     </ul>
 
@@ -242,7 +250,6 @@
                                     </div>
 
                                     <div class = "modal-body">
-                                        <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>
 <!--                                        <p>Activity Name: <span id="activity_name"></span></p>-->
 <!--                                        <p>Category: <span id="activity_category"></span></p>-->
 <!--                                        <p>Venue: </p><span id="activity_venue"></span>-->
@@ -253,7 +260,9 @@
 <!--                                        <p>Contact No.: <span id="activity_mobile_num"></span></p>-->
 <!--                                        <p>Description: <textarea id="activity_desc"></textarea></p>-->
 
-                                        <form method="post" action="login.php">
+                                        <form method="post" action="status.php">
+                                            <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>
+
                                             <div class="form-group">
                                                 <div class="form-label-group">
                                                     <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Activity name" required="required" autofocus="autofocus">
@@ -319,46 +328,16 @@
                             </div><!-- /.modal-dialog -->
 
                         </div><!-- /.modal -->
-                        <script>
-                            function showDetails(button) {
-                                var activity_id = button.id;
-                                //AJAX call to get activity_id details
-                                $.ajax({
-                                   url: "activityDetails.php",
-                                   method: "GET",
-                                   data: {"activity_id": activity_id},
-                                   success: function(response) {
-                                       // alert(response);
-                                       var activity = JSON.parse(response);
-
-                                       // $("#activity_name_title").text(activity.activity_name);
-                                       // $("#activity_name").text(activity.activity_name);
-                                       // $("#activity_category").text(activity.activity_category);
-                                       // $("#activity_venue").text(activity.activity_venue);
-                                       // $("#activity_date").text(activity.activity_date);
-                                       // $("#activity_time").text(activity.activity_time);
-                                       // $("#activity_fees").text(activity.activity_fees);
-                                       // $("#activity_mobile_num").text(activity.activity_mobile_num);
-                                       // $("#activity_desc").text(activity.activity_desc);
-
-                                       $("#activity_name_title").text(activity.activity_name);
-                                       $("#activity_name_title").val(activity.activity_name);
-                                       $("#activity_name").val(activity.activity_name);
-                                       $("#activity_category").val(activity.activity_category);
-                                       $("#activity_venue").val(activity.activity_venue);
-                                       $("#activity_date").val(activity.activity_date);
-                                       $("#activity_time").val(activity.activity_time);
-                                       $("#activity_fees").val(activity.activity_fees);
-                                       $("#activity_mobile_num").val(activity.activity_mobile_num);
-                                       $("#activity_desc").val(activity.activity_desc);
-                                   }
-
-                                });
-                            }
-                        </script>
                     </div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted">
+                    Updated at
+                    <?php
+                        date_default_timezone_set('Asia/Singapore');
+                        $date = date('d/m/Y h:i:s a', time());
+                        echo $date;
+                    ?>
+                </div>
             </div>
 
         </div>
@@ -426,3 +405,40 @@
 </body>
 
 </html>
+<script>
+    function showDetails(button) {
+        var activity_id = button.id;
+        //AJAX call to get activity_id details
+        $.ajax({
+            url: "activityDetails.php",
+            method: "GET",
+            data: {"activity_id": activity_id},
+            success: function(response) {
+                // alert(response);
+                var activity = JSON.parse(response);
+
+                // $("#activity_name_title").text(activity.activity_name);
+                // $("#activity_name").text(activity.activity_name);
+                // $("#activity_category").text(activity.activity_category);
+                // $("#activity_venue").text(activity.activity_venue);
+                // $("#activity_date").text(activity.activity_date);
+                // $("#activity_time").text(activity.activity_time);
+                // $("#activity_fees").text(activity.activity_fees);
+                // $("#activity_mobile_num").text(activity.activity_mobile_num);
+                // $("#activity_desc").text(activity.activity_desc);
+
+                $("#activity_name_title").text(activity.activity_name);
+                $("#activity_name_title").val(activity.activity_name);
+                $("#activity_name").val(activity.activity_name);
+                $("#activity_category").val(activity.activity_category);
+                $("#activity_venue").val(activity.activity_venue);
+                $("#activity_date").val(activity.activity_date);
+                $("#activity_time").val(activity.activity_time);
+                $("#activity_fees").val(activity.activity_fees);
+                $("#activity_mobile_num").val(activity.activity_mobile_num);
+                $("#activity_desc").val(activity.activity_desc);
+            }
+
+        });
+    }
+</script>
