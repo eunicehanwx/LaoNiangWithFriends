@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
   <head>
 
@@ -11,7 +11,7 @@
     <title>Freelancer - Start Bootstrap Theme</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url('assets/ui_user/vendor/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/ui_user/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="<?php echo base_url('assets/ui_user/vendor/fontawesome-free/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
@@ -61,13 +61,70 @@
         <h2 class="font-weight-light mb-0">Web Developer - Graphic Artist - User Experience Designer</h2>
       </div>
     </header>
+    <h4 class = "modal-title" id = "myModalLabel">
+        <!--                                            This Modal title-->
 
+    </h4>
     <!-- Portfolio Grid Section -->
     <section class="portfolio" id="portfolio">
       <div class="container">
         <h2 class="text-center text-uppercase text-secondary mb-0">Portfolio</h2>
         <hr class="star-dark mb-5">
+          <form class="form-inline" action="" method="post" style="font-size:15pt;">
+              <select name="field" >
+                  <option selected="selected" disabled="disabled" value="">Filter By</option>
+                  <option value="">All</option>
+                  <?php foreach($dropdownvenue as $venue) {
+                      ?>
+                      <option value="<?php echo $venue->activityvenue; ?>"><?php echo $venue->activityvenue;?></option>
+                      <?php
+                  }
+                  ?>
+              </select>
+              <input class="btn btn-default" type="submit" name="filter" value="Go" style="font-size:20pt;">
+          </form>
         <div class="row">
+            <?php foreach($articles as $article) {
+            ?>
+              <div class="col-md-6 col-lg-4">
+            	<button type="button" class="portfolio-item d-block mx-auto" href="#portfolio-modal-0" onclick="showactivity(this);" id="<?php echo $article->activityid; ?>">
+                  <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+            	    <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+            	        <i class="fas fa-search-plus fa-3x"></i>
+            		</div>
+                  </div>
+                  <h3><?php echo $article->activityname; ?></h3>
+
+                </button>
+              </div>
+            <?php
+            }
+            ?>
+            <!--                    --><?php //echo base_url()."index.php/Blog/Gonewpage/"; ?>
+            <script>
+                function showactivity(button) {
+                    var activity_id = button.id;
+                    //AJAX call to get activity_id details
+                    $.ajax({
+                        url: "<?=base_url()?>index.php/Blog/activitydetails",
+                        method: "post",
+                        data: {activity_id: activity_id},
+                        success: function(response) {
+                            // alert(response);
+                            var activity = JSON.parse(response);
+
+                            $("#activity_name_title").text(activity[0].activityname);
+                            $("#activity_venue").text(activity[0].activityvenue);
+                            $("#activity_time").text(activity[0].activitytime);
+                            $("#activity_date").text(activity[0].activitydate);
+                            $("#activity_desc").text(activity[0].activitydesc);
+                            $("#activity_fees").text(activity[0].activitfees);
+                        }
+
+                    });
+                }
+            </script>
+
           <div class="col-md-6 col-lg-4">
             <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
@@ -128,6 +185,7 @@
               <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/submarine.png');?>" alt="">
             </a>
           </div>
+
         </div>
       </div>
     </section>
@@ -266,7 +324,34 @@
 
     <!-- Portfolio Modals -->
 
-    <!-- Portfolio Modal 1 -->
+    <!-- Portfolio Modal 0 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-0">
+        <div class="portfolio-modal-dialog bg-white">
+            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <i class="fa fa-3x fa-times"></i>
+            </a>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
+                        <span id="activity_name_title"></span>
+                        <hr class="star-dark mb-5">
+                        <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cabin.png');?>" alt="">
+                        <p class="mb-6"><span id="activity_venue"></span></p>
+                        <p class="mb-6">Date:&nbsp;<span id="activity_date"></span>&nbsp;<span id="activity_time"></span></p>
+                        <p class="mb-6">Price:&nbsp;<span id="activity_fees"></span></p>
+                        <p class="mb-6"><span id="activity_desc"></span></p>
+                        <p class="mb-6"><span id="activity_fees"></span></p>
+                        <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                            <i class="fa fa-close"></i>
+                            Close Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Portfolio Modal 1 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
       <div class="portfolio-modal-dialog bg-white">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
