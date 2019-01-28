@@ -59,36 +59,95 @@
         </div>
     </div>
       <div class="container text-center">
-        <h1 class="text-uppercase mb-0">Lao Niang With Friends</h1>
+        <h1 class="text-uppercase mb-0">Lao Niang with Friends</h1>
         <hr class="star-dark">
-        <h2 class="font-weight-light mb-0">Together, we can improve the life experience for the elderly!</h2>
+        <h2 class="font-weight-light mb-0">Recipes</h2>
       </div>
 
     <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-lg-6">
-                    <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+                <div class="col-md-6 col-lg-4">
+                    <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Chinese">
                         <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                             <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                                <i class="fas fa-search-plus fa-3x"></i>
+ <!--                                <i class="fas fa-search-plus fa-3x"></i>-->
                             </div>
                         </div>
-                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/Recipe_10.png'); ?>" alt="">
+                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/chinese_cuisine.jpg'); ?>" alt="">
                     </a>
-                    <h2 class="text-center mb-5">Recipe</h2>
+                    <br />
+                    <br />
+                    <h2 class="text-center mb-5">Chinese</h2>
                 </div>
-                <div class="col-md-6 col-lg-6">
-                    <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
+                <div class="col-md-6 col-lg-4">
+                    <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Muslim">
                         <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                             <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                                <i class="fas fa-search-plus fa-3x"></i>
+<!--                                <i class="fas fa-search-plus fa-3x"></i>-->
                             </div>
                         </div>
-                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/Activity_10.png');?>" alt="">
+                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/muslim_cuisine.jpg');?>" alt="">
 
                     </a>
-                    <h2 class="text-center mb-5">Activity</h2>
+                    <br />
+                    <br />
+                    <h2 class="text-center mb-5">Muslim</h2>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Indian">
+                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                            <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                                <i class="fas fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/indian3_cuisine.jpg');?>" alt="">
+
+                    </a>
+                    <br />
+                    <br />
+                    <h2 class="text-center mb-5">Indian</h2>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Western">
+                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                            <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                                <i class="fas fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/western.jpg');?>" alt="">
+
+                    </a>
+                    <br />
+                    <br />
+                    <h2 class="text-center mb-5">Western</h2>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Vegan">
+                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                            <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                                <i class="fas fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/vegan1_cuisine.jpg');?>" alt="">
+
+                    </a>
+                    <br />
+                    <br />
+                    <h2 class="text-center mb-5">Vegan</h2>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Desserts">
+                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                            <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+<!--                                <i class="fas fa-search-plus fa-3x"></i>-->
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/dessert.jpg');?>" alt="">
+                    </a>
+                    <br />
+                    <br />
+                    <h2 class="text-center mb-5">Desserts</h2>
                 </div>
             </div>
         </div>
@@ -168,10 +227,10 @@
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cuisines.jpg');?>" alt="">
               <p class="mb-5">Interested in learning more cuisines for your dear ones? Click "View More" to learn more! </p>
+              <!--<a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="http://localhost/yanru/LaoNiangWithFriends/user/ci/maincuisines.php/blog">-->
                 <a href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">
                 <i class="fa fa-close"></i>
                 View More</a>
-
             </div>
           </div>
         </div>
@@ -191,9 +250,9 @@
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/activities.jpg');?>" alt="">
               <p class="mb-5">Looking for fun activities like healthy walk, family-bonding games and events? Click "View More" to have a list of available activities in your vicinity!</p>
-                  <a href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">
-                    <i class="fa fa-close"></i>
-                    View More</a>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                View More</a>
             </div>
           </div>
         </div>

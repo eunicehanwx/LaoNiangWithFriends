@@ -57,8 +57,10 @@ $autoload['packages'] = array();
 | in the controller:
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
+|   Alfred had change to $autoload['libraries'] = array('database');
+|   original is $autoload['libraries'] = array();
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('database');
 
 /*
 | -------------------------------------------------------------------
@@ -88,9 +90,10 @@ $autoload['drivers'] = array();
 | Prototype:
 |
 |	$autoload['helper'] = array('url', 'file');
+|   Alfred had change to $autoload['helper'] = array('url','form','file,');
+|   original is $autoload['helper'] = array('url');
 */
-$autoload['helper'] = array('url');
-
+$autoload['helper'] = array('url','form','file');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files
