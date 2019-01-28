@@ -62,6 +62,18 @@
 //            return $arrayData;
         }
 
+        public function cuisines()
+        {
+            $this->load->helper('url');
+            $this->load->view('blog/maincuisines');
+        }
+
+        public function activity()
+        {
+            $this->load->helper('url');
+            $this->load->view('activity/activity_main');
+        }
+
     }
 /* End of file Blog.php */
 /* Location: ./application/controllers/blog.php */
