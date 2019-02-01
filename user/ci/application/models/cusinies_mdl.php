@@ -37,5 +37,24 @@ class cusinies_mdl extends CI_Model{
         }
         return $list;
     }
+
+    function get_recipes_details($actid){
+        $this->db->like('recipe_id',$actid);
+        $query = $this->db->get("recipe");
+        $result = $query->result();
+        $list = Array();
+        for ($i=0; $i<count($result); $i++)
+        {
+            $list[$i] = (object)NULL;
+            $list[$i]->recipeid = $result[$i]->recipe_id;
+            $list[$i]->recipename = $result[$i]->recipe_name;
+            $list[$i]->recipecuisine = $result[$i]->recipe_cuisine;
+            $list[$i]->recipeimage = $result[$i]->recipe_image;
+            $list[$i]->recipestep = $result[$i]->recipe_step;
+            $list[$i]->recipestatus = $result[$i]->recipe_status;
+            $list[$i]->recipeingredient = $result[$i]->recipe_ingredient;
+        }
+        return $list;
+    }
 }
 ?>

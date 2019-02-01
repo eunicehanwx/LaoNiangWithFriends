@@ -76,22 +76,22 @@
               </select>
               <input class="btn btn-default" type="submit" name="filter" value="Go" style="font-size:20pt;">
              </form>
-<!--          <div class="col-lg-6">-->
-<!--              image upload form      -->
-<!--              --><?php //echo form_open_multipart('index.php/activity_ctl/add_image') ?>
-<!--              <div class="form-group">-->
-<!--                  <label>Image Name</label>-->
-<!--                  <input type="text" class="form-control" id="image_name" name="image_name">-->
-<!--              </div>-->
-<!--              <div class="form-group">-->
-<!--                  <label>Image</label>-->
-<!--                  <input type="file" class="form-control" id="userfile" name="userfile">-->
-<!--              </div>-->
-<!--              <input type="submit" class="btn btn-primary" value="Upload">-->
-<!--              --><?php //form_close() ?>
-<!---->
-<!--              <a href="--><?php //echo site_url('Image/view_images') ?><!--" class="btn btn-success" style="margin-left: 20px;">View Images</a>-->
-<!--          </div>-->
+          <div class="col-lg-6">
+              image upload form
+              <?php echo form_open_multipart('index.php/activity_ctl/add_image') ?>
+              <div class="form-group">
+                  <label>Image Name</label>
+                  <input type="text" class="form-control" id="image_name" name="image_name">
+              </div>
+              <div class="form-group">
+                  <label>Image</label>
+                  <input type="file" class="form-control" id="userfile" name="userfile">
+              </div>
+              <input type="submit" class="btn btn-primary" value="Upload">
+              <?php form_close() ?>
+
+              <a href="<?php echo site_url('Image/view_images') ?>" class="btn btn-success" style="margin-left: 20px;">View Images</a>
+          </div>
       </div>
     <section class="portfolio" id="portfolio">
         <div class="container">
@@ -193,7 +193,7 @@
                         <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
                         <span id="activity_name_title"></span>
                         <hr class="star-dark mb-5">
-                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_images/<?php echo $article->activityimage ?>" alt="">
+                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_imagess/<?php echo $article->activityimage ?>" alt="">
                         <h4 class="text-uppercase mb-4"><span id="activity_venue"></span></h4>
                         <h4 class="text-uppercase mb-4"><span id="activity_date"></span>&nbsp;<span id="activity_time"></span></h4>
                         <h4 class="text-uppercase mb-4">Price:&nbsp;$<span id="activity_fees"></span> Per Pax</h4>

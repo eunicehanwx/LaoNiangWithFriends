@@ -36,6 +36,24 @@
             $this->load->view('blog/TypeOfCusinines', $arrayData);
         }
 
+        public function recipedetails()
+        {
+            $actid = $this->input-> post('recipe_id');
+            $this->load->model('cusinies_mdl');
+            $records = $this->cusinies_mdl->get_recipes_details($actid);
+            $recipe = $records;
+
+            echo json_encode($recipe);
+
+//            $this->load->model('Blogmodel');
+//            $activitydetails = $this->Blogmodel->get_activity_details($actid);
+//
+//             $arrayData = array(
+//                 "activitydetails" => $activitydetails
+//             );
+//            return $arrayData;
+        }
+
     }
 /* End of file Blog.php */
 /* Location: ./application/controllers/blog.php */
