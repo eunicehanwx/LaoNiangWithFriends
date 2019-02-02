@@ -83,17 +83,29 @@
                     <?php
                 }
                 ?>
-<!--                <div class="col-md-6 col-lg-4">-->
-<!--                    <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">-->
-<!--                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">-->
-<!--                            <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">-->
-<!--                                <i class="fas fa-search-plus fa-3x"></i>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="--><?php //echo base_url('assets/ui_user/img/portfolio/chinese_cuisine.jpg'); ?><!--" alt="">-->
-<!--                    </a>-->
-<!--                    <h2 class="text-center mb-5">Chinese</h2>-->
-<!--                </div>-->
+                <script>
+                    function showactivity(button) {
+                        var recipe_id = button.id;
+                        //AJAX call to get activity_id details
+                        $.ajax({
+                            url: "<?=base_url()?>index.php/Cuisines/recipedetails",
+                            method: "post",
+                            data: {recipe_id: recipe_id},
+                            success: function(response) {
+                                // alert(response);
+                                var recipe = JSON.parse(response);
+                                $("#recipe_id").text(button.id);
+                                $("#recipe_name_title").text(recipe[0].recipename);
+                                $("#recipe_cuisine").text(recipe[0].recipecuisine);
+                                $("#recipe_image").text(recipe[0].recipeimage);
+                                $("#recipe_step").text(recipe[0].recipestep);
+                                $("#recipe_status").text(recipe[0].recipestatus);
+                                $("#recipe_ingredient").text(recipe[0].recipeingredient);
+                            }
+
+                        });
+                    }
+                </script>
             </div>
         </div>
     </section>
@@ -141,15 +153,15 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
-                        <span id="activity_name_title"></span>
+                        <h2 class="text-secondary text-uppercase mb-0"><span id="recipe_name_title"></span></h2>
+                        <span id="recipe_name_title"></span>
                         <hr class="star-dark mb-5">
                         <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cabin.png');?>" alt="">
-                        <p class="mb-6"><span id="activity_venue"></span></p>
-                        <p class="mb-6">Date:&nbsp;<span id="activity_date"></span>&nbsp;<span id="activity_time"></span></p>
-                        <p class="mb-6">Price:&nbsp;<span id="activity_fees"></span></p>
-                        <p class="mb-6"><span id="activity_desc"></span></p>
-                        <p class="mb-6"><span id="activity_fees"></span></p>
+                        <p class="mb-6"><span id="recipe_cuisine"></span></p>
+                        <p class="mb-6"><span id="recipe_image"></span>&nbsp;
+                        <p class="mb-6"><span id="recipe_step"></span></p>
+                        <p class="mb-6"><span id="recipe_status"></span></p>
+                        <p class="mb-6"><span id="recipe_ingredient"></span></p>
                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                             <i class="fa fa-close"></i>
                             Close Project</a>
@@ -159,50 +171,33 @@
         </div>
     </div>
 
-        <!-- Portfolio Modal 1 -->
-    <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
-      <div class="portfolio-modal-dialog bg-white">
-        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
-          <i class="fa fa-3x fa-times"></i>
-        </a>
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Recipes</h2>
-              <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cuisines.jpg');?>" alt="">
-              <p class="mb-5">Interested in learning more cuisines for your dear ones? Click "View More" to learn more! </p>
-              <!--<a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="http://localhost/yanru/LaoNiangWithFriends/user/ci/maincuisines.php/blog">-->
-                <a href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">
-                <i class="fa fa-close"></i>
-                View More</a>
+    <!-- Portfolio Modal 0 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-0">
+        <div class="portfolio-modal-dialog bg-white">
+            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <i class="fa fa-3x fa-times"></i>
+            </a>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
+                        <span id="activity_name_title"></span>
+                        <hr class="star-dark mb-5">
+                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_images/<?php echo $article->activityimage ?>" alt="">
+                        <h4 class="text-uppercase mb-4"><span id="activity_venue"></span></h4>
+                        <h4 class="text-uppercase mb-4"><span id="activity_date"></span>&nbsp;<span id="activity_time"></span></h4>
+                        <h4 class="text-uppercase mb-4">Price:&nbsp;$<span id="activity_fees"></span> Per Pax</h4>
+                        <h4 class="text-uppercase mb-4"><span id="activity_desc"></span></p>
+                            <h4 class="mb-6"><span id="activity_fees"></span></h4>
+                            <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                <i class="fa fa-close"></i>
+                                Close</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!-- Portfolio Modal 2 -->
-    <div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
-      <div class="portfolio-modal-dialog bg-white">
-        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
-          <i class="fa fa-3x fa-times"></i>
-        </a>
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Activities</h2>
-              <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/activities.jpg');?>" alt="">
-              <p class="mb-5">Looking for fun activities like healthy walk, family-bonding games and events? Click "View More" to have a list of available activities in your vicinity!</p>
-              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
-                <i class="fa fa-close"></i>
-                View More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="<?php echo base_url('assets/ui_user/vendor/jquery/jquery.min.js'); ?>"></script>

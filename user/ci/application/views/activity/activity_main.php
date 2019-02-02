@@ -77,7 +77,7 @@
               <input class="btn btn-default" type="submit" name="filter" value="Go" style="font-size:20pt;">
              </form>
 <!--          <div class="col-lg-6">-->
-<!--              image upload form      -->
+<!--              image upload form-->
 <!--              --><?php //echo form_open_multipart('index.php/activity_ctl/add_image') ?>
 <!--              <div class="form-group">-->
 <!--                  <label>Image Name</label>-->
@@ -99,21 +99,21 @@
             <?php if($this->session->flashdata('msg')): ?>
                 <script>
                 function myFunction() {
-                    alert("<?php echo $this->session->flashdata('msg'); ?>");
+                    alert("--><?php //echo $this->session->flashdata('msg'); ?>//");
                 }
             </script>
-            <?php endif; ?>
+           <?php endif; ?>
             <div class="row">
                     <?php foreach($articles as $article) {
                         ?>
-                        <div class="col-md-6 col-lg-4">
+                        <div class="col-md-6 col-lg-4" >
                             <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-0" onclick="showactivity(this);" id="<?php echo $article->activityid; ?>">
                                 <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                                     <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                                         <i class="fas fa-search-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img class="img-fluid" src="<?php echo base_url() ?>assets/uploaded_images/<?php echo $article->activityimage ?>" />
+                                <img width="350" height="240" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $article->activityimage ?>" />
                             </a>
                         </div>
                         <?php
@@ -124,7 +124,7 @@
                             var activity_id = button.id;
                             //AJAX call to get activity_id details
                             $.ajax({
-                                url: "<?=base_url()?>index.php/Blog/activitydetails",
+                                url: "<?php echo base_url()?>index.php/Blog/activitydetails",
                                 method: "post",
                                 data: {activity_id: activity_id},
                                 success: function(response) {
@@ -193,7 +193,7 @@
                         <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
                         <span id="activity_name_title"></span>
                         <hr class="star-dark mb-5">
-                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_images/<?php echo $article->activityimage ?>" alt="">
+                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $article->activityimage ?>" alt="">
                         <h4 class="text-uppercase mb-4"><span id="activity_venue"></span></h4>
                         <h4 class="text-uppercase mb-4"><span id="activity_date"></span>&nbsp;<span id="activity_time"></span></h4>
                         <h4 class="text-uppercase mb-4">Price:&nbsp;$<span id="activity_fees"></span> Per Pax</h4>
@@ -232,7 +232,7 @@
                         function add_user() {
                             //AJAX call to get activity_id details
                             $.ajax({
-                                url: "<?=base_url()?>index.php/activity_ctl/register_user",
+                                url: "<?php echo base_url();?>index.php/activity_ctl/register_user",
                                 method: "post",
                                 data: {actid: $("#actid").val(), name: $("#name").val(), phone: $("#phone").val()},
                                 success: function(data) {
