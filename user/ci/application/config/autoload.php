@@ -60,7 +60,8 @@ $autoload['packages'] = array();
 |   Alfred had change to $autoload['libraries'] = array('database');
 |   original is $autoload['libraries'] = array();
 */
-$autoload['libraries'] = array('database');
+//$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database', 'session', 'form_validation');
 
 /*
 | -------------------------------------------------------------------

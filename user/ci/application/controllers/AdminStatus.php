@@ -1,114 +1,105 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- class AdminStatus extends CI_Controller {
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * http://example.com/index.php/blog
-	 * - or -
-	 * http://example.com/index.php/blog/index
-	 * - or -
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /dashboard.html/blog/{method_name}
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+ class AdminStatus extends CI_Controller
+ {
+     /**
+      * Index Page for this controller.
+      *
+      * Maps to the following URL
+      * http://example.com/index.php/blog
+      * - or -
+      * http://example.com/index.php/blog/index
+      * - or -
+      * So any other public methods not prefixed with an underscore will
+      * map to /dashboard.html/blog/{method_name}
+      * @see http://codeigniter.com/user_guide/general/urls.html
+      */
 
      public function __construct()
-	 {
-		parent::__construct();
-		$this->load->database();
-	 }
+     {
+//		parent::__construct();
+//		$this->load->database();
 
-	 public function index()
-	 {
+         parent::__construct();
+         if ($_SESSION['login_user'] == FALSE) {
+             $this->session->set_flashdata("error", "Please log in first");
+             redirect("index.php/AdminAuth/login");
+         }
+
+         $this->load->database();
+         $this->load->model('Adminmodel');
+     }
+
+     public function index()
+     {
 //		 $this->load->model("Blogmodel");
 //		 $articles = $this->Blogmodel->get_articles_list();
 //		 $data["articles"] = $articles;
-		 $this->load->helper('url');
-		 $this->load->view('admin/status');
+         $this->load->helper('url');
+         $data['activities'] = $this->Adminmodel->get_activity_list();
+         $this->load->view('admin/status', $data);
 
-	 }
+     }
 
-    public function ajax_edit($id)
-    {
-        $data = $this->Adminmodel->get_by_id($id);
+     public function createActivity()
+     {
+         $this->load->helper('url');
+//         $data['activities'] = $this->Adminmodel->get_activity_list();
+         $this->load->view('admin/createActivity');
+
+     }
+
+     public function ajax_edit($id)
+     {
+         $data = $this->Adminmodel->get_by_id($id);
 //        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
 
-        echo json_encode($data);
-    }
+         echo json_encode($data);
+     }
 
-    public function ajax_update()
-    {
-//        $this->_validate();
-        $data = array(
-//            'activity_id' => $this->input->post('activity_id'),
-            'activity_name' => $this->input->post('activity_name'),
-            'activity_category' => $this->input->post('activity_category'),
-            'activity_venue' => $this->input->post('activity_venue'),
-            'activity_time' => "",
-            'activity_date' => "",
-            'activity_desc' => $this->input->post('activity_desc'),
-            'activity_fees' => $this->input->post('activity_fees'),
-            'activity_mobile_num' => $this->input->post('activity_mobile_num'),
-            'activity_image' => $this->input->post('activity_image'),
-            'activity_status' => "",
+     public function ajax_delete($id)
+     {
+          $this->Adminmodel->delete($id);
+     }
 
-        );
-        $this->Adminmodel->update(array('activity_id' => $this->input->post('activity_id')), $data);
-        echo json_encode(array("status" => TRUE));
-    }
+     public function ajax_create ()
+     {
+         $data = array(
+             'activity_id' => $this->Adminmodel->get_max_id(),
+             'activity_name' => $this->input->post('activity_name'),
+             'activity_category' => $this->input->post('activity_category'),
+             'activity_venue' => $this->input->post('activity_venue'),
+             'activity_time' => $this->input->post('activity_time'),
+             'activity_date' => $this->input->post('activity_date'),
+             'activity_desc' => $this->input->post('activity_desc'),
+             'activity_fees' => $this->input->post('activity_fees'),
+             'activity_mobile_num' => $this->input->post('activity_mobile_num'),
+             'activity_image' => $this->input->post('activity_image'),
+             'activity_status' => "pending",
+         );
+         $this->Adminmodel->create($data);
+     }
 
-    private function _validate()
-    {
-        $data = array();
-        $data['error_string'] = array();
-        $data['inputerror'] = array();
-        $data['status'] = TRUE;
-
-        if($this->input->post('activity_name') == '')
-        {
-            $data['inputerror'][] = 'activity_name';
-            $data['error_string'][] = 'activity_name is required';
-            $data['status'] = FALSE;
-        }
-
-//        if($this->input->post('lastName') == '')
-//        {
-//            $data['inputerror'][] = 'lastName';
-//            $data['error_string'][] = 'Last name is required';
-//            $data['status'] = FALSE;
-//        }
-//
-//        if($this->input->post('dob') == '')
-//        {
-//            $data['inputerror'][] = 'dob';
-//            $data['error_string'][] = 'Date of Birth is required';
-//            $data['status'] = FALSE;
-//        }
-//
-//        if($this->input->post('gender') == '')
-//        {
-//            $data['inputerror'][] = 'gender';
-//            $data['error_string'][] = 'Please select gender';
-//            $data['status'] = FALSE;
-//        }
-//
-//        if($this->input->post('address') == '')
-//        {
-//            $data['inputerror'][] = 'address';
-//            $data['error_string'][] = 'Addess is required';
-//            $data['status'] = FALSE;
-//        }
-
-        if($data['status'] === FALSE)
-        {
-            echo json_encode($data);
-            exit();
-        }
-    }
+     public function ajax_update()
+     {
+//         $this->_validate();
+         $activity_id = $this->input->post('activity_id');
 
 
-    }
+         $data = array(
+             'activity_name' => $this->input->post('activity_name'),
+             'activity_category' => $this->input->post('activity_category'),
+             'activity_venue' => $this->input->post('activity_venue'),
+             'activity_time' => $this->input->post('activity_time'),
+             'activity_date' => $this->input->post('activity_date'),
+             'activity_desc' => $this->input->post('activity_desc'),
+             'activity_fees' => $this->input->post('activity_fees'),
+             'activity_mobile_num' => $this->input->post('activity_mobile_num'),
+             'activity_image' => $this->input->post('activity_image'),
+             'activity_status' => $this->input->post('activity_status'),
+         );
+         $this->Adminmodel->update($activity_id, $data);
+     }
+ }
 /* End of file AdminController.php */
 /* Location: ./application/controllers/AdminController.php */
