@@ -26,7 +26,7 @@ class activity_mdl extends CI_Model{
             'activity_image' => $image
         );
         //insert image to the database
-        $this->db->where('activity_id',1);
+        $this->db->where('activity_id',2);
         $this->db->update('activity', $data);
     }
 

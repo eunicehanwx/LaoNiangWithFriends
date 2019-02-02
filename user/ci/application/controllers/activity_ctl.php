@@ -77,7 +77,7 @@
 
         public function add_image()
         {
-                $config['upload_path'] = './assets/uploaded_images';
+                $config['upload_path'] = './assets/uploaded_image';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size'] = '2048000'; // max size in KB
                 $config['max_width'] = '20000'; //max resolution width

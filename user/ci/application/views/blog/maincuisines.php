@@ -259,6 +259,51 @@
       </div>
     </div>
 
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
+        <div class="portfolio-modal-dialog bg-white">
+            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <i class="fa fa-3x fa-times"></i>
+            </a>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >
+                            <input type="hidden" id="actid" name="actid" value="<?php echo $article->activityid; ?>" >
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Name</label>
+                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Phone Number</label>
+                                    <input class="form-control" name="phone" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" onclick="add_user(this)">Register</button>
+                                <br />
+                                <br />
+                                <label style="visibility:hidden" id="sus_msg"><span id="success_msg"></span></label>
+                            </div>
+
+                        </form><a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                            <i class="fa fa-close"></i>
+                            View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <!-- Bootstrap core JavaScript -->
     <script src="<?php echo base_url('assets/ui_user/vendor/jquery/jquery.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/ui_user/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>

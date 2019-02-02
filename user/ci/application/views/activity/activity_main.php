@@ -80,10 +80,6 @@
 <!--              image upload form-->
 <!--              --><?php //echo form_open_multipart('index.php/activity_ctl/add_image') ?>
 <!--              <div class="form-group">-->
-<!--                  <label>Image Name</label>-->
-<!--                  <input type="text" class="form-control" id="image_name" name="image_name">-->
-<!--              </div>-->
-<!--              <div class="form-group">-->
 <!--                  <label>Image</label>-->
 <!--                  <input type="file" class="form-control" id="userfile" name="userfile">-->
 <!--              </div>-->
@@ -203,31 +199,31 @@
                             <i class="fa fa-close"></i>
                             Close</a>
                     </div>
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >
-                        <input type="hidden" id="actid" name="actid" value="<?php echo $article->activityid; ?>" >
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Name</label>
-                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Phone Number</label>
-                                <input class="form-control" name="phone" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" onclick="add_user(this)">Register</button>
-                            <br />
-                            <br />
-                            <label style="visibility:hidden" id="sus_msg"><span id="success_msg"></span></label>
-                        </div>
-
-                    </form>
+<!--                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >-->
+<!--                        <input type="hidden" id="actid" name="actid" value="--><?php //echo $article->activityid; ?><!--" >-->
+<!--                        <div class="control-group">-->
+<!--                            <div class="form-group floating-label-form-group controls mb-0 pb-2">-->
+<!--                                <label>Name</label>-->
+<!--                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">-->
+<!--                                <p class="help-block text-danger"></p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="control-group">-->
+<!--                            <div class="form-group floating-label-form-group controls mb-0 pb-2">-->
+<!--                                <label>Phone Number</label>-->
+<!--                                <input class="form-control" name="phone" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">-->
+<!--                                <p class="help-block text-danger"></p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <br>-->
+<!--                        <div class="form-group">-->
+<!--                            <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" onclick="add_user(this)">Register</button>-->
+<!--                            <br />-->
+<!--                            <br />-->
+<!--                            <label style="visibility:hidden" id="sus_msg"><span id="success_msg"></span></label>-->
+<!--                        </div>-->
+<!---->
+<!--                    </form>-->
                     <script>
                         function add_user() {
                             //AJAX call to get activity_id details
