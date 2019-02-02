@@ -94,8 +94,8 @@
      public function createActivity()
      {
          $this->load->helper('url');
-//         $data['activities'] = $this->Adminmodel->get_activity_list();
-         $this->load->view('admin/createActivity');
+         $data['categories'] = $this->Adminmodel->get_category_list();
+         $this->load->view('admin/createActivity', $data);
 
      }
 
@@ -115,7 +115,7 @@
      public function ajax_create ()
      {
          $data = array(
-             'activity_id' => $this->Adminmodel->get_max_id(),
+//             'activity_id' => $this->Adminmodel->get_max_id(),
              'activity_name' => $this->input->post('activity_name'),
              'activity_category' => $this->input->post('activity_category'),
              'activity_venue' => $this->input->post('activity_venue'),
@@ -148,7 +148,7 @@
              'activity_image' => $this->input->post('activity_image'),
              'activity_status' => $this->input->post('activity_status'),
          );
-         $this->Adminmodel->update($activity_id, $data);
+         $this->Adminmodel->update($activity_id, $data, 'activity', 'activity_id');
      }
  }
 /* End of file AdminController.php */

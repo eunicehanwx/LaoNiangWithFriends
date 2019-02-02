@@ -105,7 +105,7 @@
                 <span>Review all requests</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivity')?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Activity</span></a>
@@ -114,25 +114,13 @@
         <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient')?>">
                 <i class="fab fa-wpforms"></i>
-                <span>View all Clients</span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createClient')?>">
-                <i class="fab fa-wpforms"></i>
-                <span>Create New Client</span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivityCat')?>">
-                <i class="fab fa-wpforms"></i>
-                <span>Create New Category</span></a>
+                <span>View all clients</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivityCat')?>">
                 <i class="fab fa-wpforms"></i>
-                <span>View all Categories</span></a>
+                <span>Create New Category</span></a>
         </li>
     </ul>
 
@@ -152,17 +140,82 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Create new category for activities ...
+                    Create new activities ...
                 </div>
                 <div class="card-body">
-                    <form method="post" action="" id="createCat" role="form">
+                    <form method="post" action="" id="createForm" role="form">
 
                         <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="text" name="category_name" id="category_name" class="form-control" placeholder="Category name" required="required" autofocus="autofocus">
-                                <label for="category_name">Category name</label>
+                                <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Activity name" required="required" autofocus="autofocus">
+                                <label for="activity_name">Activity name</label>
+                            </div>
+                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <div class="form-label-group">-->
+<!--                                <input type="text" name="activity_category" id="activity_category" class="form-control" placeholder="Activity category" required="required">-->
+<!--                                <label for="activity_category">Category</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <!--                                                    <input type="option" name="activity_status" id="activity_status" class="form-control" placeholder="Activity status" required="required">-->
+                                <!--                                                    <label for="activity_status">Status</label>-->
+                                <select name="activity_category" id="activity_category" class="form-control" placeholder="Activity category">
+                                    <!--                                                        <option value=""></option>-->
+<!--                                    <option value="REJECTED">REJECT</option>-->
+<!--                                    <option value="APPROVED">APPROVE</option>-->
+
+                                    <option value="">Select Category</option>
+                                    <?php foreach($categories as $category) { ?>
+
+                                        <option value="<?php echo $category->category_name; ?>"><?php echo $category->category_name; ?></option>
+
+                                    <?php } ?>
+                                </select>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" name="activity_venue" id="activity_venue" class="form-control" placeholder="Activity venue" required="required">
+                                <label for="activity_venue">Venue</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="date" name="activity_date" id="activity_date" class="form-control" placeholder="Activity date" required="required">
+                                <label for="activity_date">Date</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="activity_time" id="activity_time" class="form-control" placeholder="Activity time" required="required">
+                                <label for="activity_time">Time</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" name="activity_fees" id="activity_fees" class="form-control" placeholder="Activity fees" required="required">
+                                <label for="activity_fees">Fees ($)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" name="activity_mobile_num" id="activity_mobile_num" class="form-control" placeholder="Activity contact number" required="required">
+                                <label for="activity_mobile_num">Contact Number</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" name="activity_desc" id="activity_desc" class="form-control" placeholder="Activity description" required="required">
+                                <label for="activity_desc">Description of Activity</label>
                             </div>
                         </div>
 
@@ -253,12 +306,19 @@
 
 <script>
     $(document).ready(function() {
-        $("#createCat").submit(function(e) {
+        $("#createForm").submit(function(e) {
             // var actNameT = $("#activity_name_title").val();
             // var actId = $("#activity_id").val();
             // var actStatus = $("#activity_status").val();
-            var catName = $("#category_name").val();
-            var url = "<?php echo site_url('index.php/AdminActivity/ajax_cat_create') ?> ";
+            var actName = $("#activity_name").val();
+            var actCat = $("#activity_category").val();
+            var actVenue = $("#activity_venue").val();
+            var actDate = $("#activity_date").val();
+            var actTime = $("#activity_time").val();
+            var actFees = $("#activity_fees").val();
+            var actMobileNum = $("#activity_mobile_num").val();
+            var actDesc = $("#activity_desc").val();
+            var url = "<?php echo site_url('index.php/AdminActivity/ajax_create') ?> ";
 
             $('#btnSave').text('saving...'); //change button text
             $('#btnSave').attr('disabled',true); //set button disable
@@ -266,12 +326,14 @@
             $.ajax({
                 url : url,
                 method: "POST",
-                data: {category_name: catName},
+                data: {activity_name: actName, activity_category: actCat, activity_venue: actVenue,
+                    activity_date: actDate, activity_time: actTime, activity_fees: actFees,
+                    activity_mobile_num: actMobileNum, activity_desc: actDesc},
                 success: function(data)
                 {
                     alert("success");
 
-                    top.location.href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>";
+                    top.location.href="<?php echo base_url('index.php/AdminActivity')?>";
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
