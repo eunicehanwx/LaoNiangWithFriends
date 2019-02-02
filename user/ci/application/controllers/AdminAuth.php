@@ -60,7 +60,7 @@
                      $_SESSION['login_user'] = TRUE;
                      $_SESSION['admin_name'] = $user->admin_name;
 
-                     redirect("index.php/AdminStatus/", "refresh");
+                     redirect("index.php/AdminActivity/viewActivity/", "refresh");
                  } else {
                      echo 'no acc exist';
 //                     $this->session->set_flashdata("error", "Your account has been created");

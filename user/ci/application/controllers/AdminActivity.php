@@ -1,6 +1,6 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- class AdminStatus extends CI_Controller
+ class AdminActivity extends CI_Controller
  {
      /**
       * Index Page for this controller.
@@ -30,7 +30,7 @@
          $this->load->model('Adminmodel');
      }
 
-     public function index()
+     public function viewActivity()
      {
 //		 $this->load->model("Blogmodel");
 //		 $articles = $this->Blogmodel->get_articles_list();
@@ -40,6 +40,56 @@
          $this->load->view('admin/status', $data);
 
      }
+
+     public function viewActivityCat()
+     {
+         $this->load->helper('url');
+         $data['categories'] = $this->Adminmodel->get_category_list();
+         $this->load->view('admin/viewActivityCat', $data);
+
+     }
+
+     public function createActivityCat()
+     {
+         $this->load->helper('url');
+//         $data['activities'] = $this->Adminmodel->get_activity_list();
+         $this->load->view('admin/createActivityCat');
+
+     }
+
+     public function ajax_cat_edit($id)
+     {
+         $data = $this->Adminmodel->get_by_id($id, 'category', 'category_id');
+//        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+
+         echo json_encode($data);
+     }
+
+     public function ajax_cat_update()
+     {
+//         $this->_validate();
+         $category_id = $this->input->post('category_id');
+
+
+         $data = array(
+             'category_name' => $this->input->post('category_name')
+         );
+         $this->Adminmodel->update($category_id, $data, 'category', 'category_id');
+     }
+
+     public function ajax_cat_delete($id)
+     {
+         $this->Adminmodel->delete($id, 'category', 'category_id');
+     }
+
+     public function ajax_cat_create ()
+     {
+         $data = array(
+             'category_name' => $this->input->post('category_name')
+         );
+         $this->Adminmodel->catCreate($data);
+     }
+
 
      public function createActivity()
      {
@@ -51,7 +101,7 @@
 
      public function ajax_edit($id)
      {
-         $data = $this->Adminmodel->get_by_id($id);
+         $data = $this->Adminmodel->get_by_id($id, 'activity', 'activity_id');
 //        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
 
          echo json_encode($data);
@@ -59,7 +109,7 @@
 
      public function ajax_delete($id)
      {
-          $this->Adminmodel->delete($id);
+          $this->Adminmodel->delete($id, 'activity', 'activity_id');
      }
 
      public function ajax_create ()

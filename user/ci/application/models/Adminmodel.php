@@ -21,6 +21,15 @@ class Adminmodel extends CI_Model{
         return $query->result();
     }
 
+    function get_category_list()
+    {
+        //do soft delete https://forum.codeigniter.com/archive/index.php?thread-43130.html
+
+        $this->db->from('category');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
     function get_activity_list()
     {
         //do soft delete https://forum.codeigniter.com/archive/index.php?thread-43130.html
@@ -30,10 +39,10 @@ class Adminmodel extends CI_Model{
         return $query->result();
     }
 
-    public function get_by_id($id)
+    public function get_by_id($id, $table, $col)
     {
-        $this->db->from('activity');
-        $this->db->where('activity_id',$id);
+        $this->db->from($table);
+        $this->db->where($col,$id);
         $query = $this->db->get();
 
 //        echo $id;
@@ -56,17 +65,23 @@ class Adminmodel extends CI_Model{
         $this->db->insert('activity', $data);
     }
 
-    public function update($where, $data)
+    public function update($where, $data, $table, $col)
     {
-        $this->db->where('activity_id', $where);
-        $this->db->update('activity', $data);
+        $this->db->where($col, $where);
+        $this->db->update($table, $data);
     }
 
-    public function delete($where)
+    public function delete($where, $table, $col)
     {
-        $this->db->where('activity_id', $where);
-        $this->db->delete('activity');
+        $this->db->where($col, $where);
+        $this->db->delete($table);
     }
+
+    public function catCreate($data)
+    {
+        $this->db->insert('category', $data);
+    }
+
 
 }
 
