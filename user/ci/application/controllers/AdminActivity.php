@@ -135,6 +135,12 @@
 //         $this->_validate();
          $activity_id = $this->input->post('activity_id');
 
+         $config['upload_path'] = "./assets/uploaded_image";
+         $config['allowed_types']='gif|jpg|png';
+         $this->load->library('upload',$config);
+         if($this->upload->do_upload("file")) {
+             $data = array('upload_data' => $this->upload->data());
+         }
 
          $data = array(
              'activity_name' => $this->input->post('activity_name'),
@@ -145,7 +151,7 @@
              'activity_desc' => $this->input->post('activity_desc'),
              'activity_fees' => $this->input->post('activity_fees'),
              'activity_mobile_num' => $this->input->post('activity_mobile_num'),
-             'activity_image' => $this->input->post('activity_image'),
+             'activity_image' =>  $data['upload_data']['file_name'],
              'activity_status' => $this->input->post('activity_status'),
          );
          $this->Adminmodel->update($activity_id, $data, 'activity', 'activity_id');

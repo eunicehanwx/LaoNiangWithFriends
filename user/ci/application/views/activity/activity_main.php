@@ -38,15 +38,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#activity">Activity</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#recipe">Recipe</a>
-            </li>
+<!--            <li class="nav-item mx-0 mx-lg-1">-->
+<!--              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>-->
+<!--            </li>-->
+<!--              <li class="nav-item mx-0 mx-lg-1">-->
+<!--                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="--><?php //echo base_url(). "index.php/activity_ctl/index/"; ?><!--">Activity</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item mx-0 mx-lg-1">-->
+<!--                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="--><?php //echo base_url(). "index.php/blog/cuisines/"; ?><!--">Recipe</a>-->
+<!--              </li>-->
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="#about" >About</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">Activity</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">Recipe</a>
+              </li>
           </ul>
         </div>
       </div>
@@ -199,31 +208,31 @@
                             <i class="fa fa-close"></i>
                             Close</a>
                     </div>
-<!--                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >-->
-<!--                        <input type="hidden" id="actid" name="actid" value="--><?php //echo $article->activityid; ?><!--" >-->
-<!--                        <div class="control-group">-->
-<!--                            <div class="form-group floating-label-form-group controls mb-0 pb-2">-->
-<!--                                <label>Name</label>-->
-<!--                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">-->
-<!--                                <p class="help-block text-danger"></p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="control-group">-->
-<!--                            <div class="form-group floating-label-form-group controls mb-0 pb-2">-->
-<!--                                <label>Phone Number</label>-->
-<!--                                <input class="form-control" name="phone" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">-->
-<!--                                <p class="help-block text-danger"></p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <br>-->
-<!--                        <div class="form-group">-->
-<!--                            <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" onclick="add_user(this)">Register</button>-->
-<!--                            <br />-->
-<!--                            <br />-->
-<!--                            <label style="visibility:hidden" id="sus_msg"><span id="success_msg"></span></label>-->
-<!--                        </div>-->
-<!---->
-<!--                    </form>-->
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >
+                        <input type="hidden" id="actid" name="actid" value="<?php echo $article->activityid; ?>" >
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Name</label>
+                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Phone Number</label>
+                                <input class="form-control" name="phone" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" onclick="add_user(this)">Register</button>
+                            <br />
+                            <br />
+                            <label style="visibility:hidden" id="sus_msg"><span id="success_msg"></span></label>
+                        </div>
+
+                    </form>
                     <script>
                         function add_user() {
                             //AJAX call to get activity_id details

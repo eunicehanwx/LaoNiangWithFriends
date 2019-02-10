@@ -104,7 +104,13 @@
         <li class="nav-item active">
             <a class="nav-link" href="<?php echo base_url('index.php/ClientStatus')?>">
                 <i class="fas fa-th-list"></i>
-                <span>My Requests</span></a>
+                <span>My Activities</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('index.php/ClientStatus')?>">
+                <i class="fas fa-th-list"></i>
+                <span>My Recipes</span></a>
         </li>
 
         <li class="nav-item">

@@ -23,6 +23,9 @@
     <!-- Page level plugin CSS-->
     <link href="<?php echo base_url('assets/ui_admin/vendor/datatables/dataTables.bootstrap4.css');?>" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'resources/css/bootstrap.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'resources/dropify/css/dropify.css'?>">
+
 
 </head>
 
@@ -37,7 +40,6 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
-
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
@@ -99,28 +101,29 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/ClientStatus')?>">
                 <i class="fas fa-th-list"></i>
-                <span>Review all requests</span></a>
+                <span>My Activities</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('index.php/ClientStatusRecipe')?>">
+                <i class="fas fa-th-list"></i>
+                <span>My Recipes</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivity')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/Upload/add_new')?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Activity</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/recipeUpload/add_new')?>">
                 <i class="fab fa-wpforms"></i>
-                <span>View all clients</span></a>
+                <span>Create New Recipe</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivityCat')?>">
-                <i class="fab fa-wpforms"></i>
-                <span>Create New Category</span></a>
-        </li>
     </ul>
 
     <div id="content-wrapper">
@@ -145,51 +148,51 @@
                         <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Activity Name</th>
-                                    <th>Client ID</th>
-                                    <th>Event Category</th>
-                                    <th>Event Description</th>
-                                    <th>Event Date</th>
-                                    <th>Event Time</th>
+                                    <th>Recipe Name</th>
+                                    <th>Recipe Cuisine</th>
+                                    <th>Recipe Ingredient</th>
+                                    <th>Recipe Step</th>
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <?php foreach($activities as $activity) { ?>
+                                <?php foreach($recipes as $recipe) { ?>
                                     <tr>
-                                        <td><?php echo $activity->activity_name; ?></td>
-                                        <td><?php echo $activity->client_id; ?></td>
-                                        <td><?php echo $activity->activity_category; ?></td>
-                                        <td><?php echo $activity->activity_desc; ?></td>
-                                        <td><?php echo $activity->activity_date; ?></td>
-                                        <td><?php echo $activity->activity_time; ?></td>
+                                        <td><?php echo $recipe->recipe_name; ?></td>
+                                        <td><?php echo $recipe->recipe_cuisine; ?></td>
+                                        <td><?php echo $recipe->recipe_ingredient; ?></td>
+                                        <td><?php echo $recipe->recipe_step; ?></td>
 
-                                        <?php if (($activity->activity_status) == 'APPROVED') { ?>
-                                            <td bgcolor="#98fb98"><?php echo $activity->activity_status; ?></td>
-                                        <?php } else if (($activity->activity_status) == 'REJECTED') { ?>
-                                            <td bgcolor="#db7093"><?php echo $activity->activity_status; ?></td>
+
+                                        <?php if (($recipe->recipe_status) == 'APPROVED') { ?>
+                                            <td bgcolor="#98fb98"><?php echo $recipe->recipe_status; ?></td>
+                                        <?php } else if (($recipe->recipe_status) == 'REJECTED') { ?>
+                                            <td bgcolor="#db7093"><?php echo $recipe->recipe_status; ?></td>
                                         <?php } else { ?>
-                                            <td><?php echo $activity->activity_status; ?></td>
+                                            <td><?php echo $recipe->recipe_status; ?></td>
                                         <?php } ?>
 
                                         <td>
-                                            <!-- Button edit/review trigger modal -->
-                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='reviewDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#editModal">
-                                                <i class="far fa-edit"></i>
-                                                <span>Edit/Review</span>
-                                            </button>
+                                            <?php if (($recipe->recipe_status) == 'APPROVED') { ?>
+
+                                            <?php }  else { ?>
+                                                <button id=" <?php echo $recipe->recipe_id; ?> " onclick='reviewDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#editModal">
+                                                    <i class="far fa-edit"></i>
+                                                    <span>Edit/Review</span>
+                                                </button>
+                                            <?php } ?>
 
                                             <hr>
 
                                             <!-- Button view trigger modal -->
-                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='showDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewModal">
-                                                <i class="far fa-eye"></i>
-                                                <span></span>
-                                            </button>
+<!--                                            <button id=" --><?php //echo $recipe->recipe_id; ?><!-- " onclick='showDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewModal">-->
+<!--                                                <i class="far fa-eye"></i>-->
+<!--                                                <span></span>-->
+<!--                                            </button>-->
                                             <!-- Button remove trigger modal -->
-                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='deleteDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">
+                                            <button id=" <?php echo $recipe->recipe_id; ?> " onclick='deleteDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">
                                                 <i class="far fa-trash-alt"></i>
                                                 <span></span>
                                             </button>
@@ -202,6 +205,7 @@
 
 
                     </div>
+                </div>
                 </div>
                 <div class="card-footer small text-muted">
                     Updated at
@@ -271,7 +275,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<?php echo base_url('index.php/AdminAuth/logout') ?>">Logout</a>
+                <a class="btn btn-primary" href="<?php echo base_url('index.php/ClientAuth/logout') ?>">Logout</a>
             </div>
         </div>
     </div>
@@ -384,73 +388,39 @@
 
             <div class = "modal-body">
                 <form enctype="multipart/form-data" method="post" action="" id="editForm" role="form">
-                    <input type="hidden" value="" name="activity_id" id="activity_id"/>
+                    <input type="hidden" value="" name="recipe_id" id="recipe_id"/>
 
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            <!--                                                    <input type="option" name="activity_status" id="activity_status" class="form-control" placeholder="Activity status" required="required">-->
-                            <!--                                                    <label for="activity_status">Status</label>-->
-                            <select name="activity_status" id="activity_status" class="form-control" placeholder="Activity status">
-                                <!--                                                        <option value=""></option>-->
-<!--                                <option value="pending">pending</option>-->
-                                <option value="REJECTED">REJECT</option>
-                                <option value="APPROVED">APPROVE</option>
-                            </select>
-
-                        </div>
-                    </div>
 <!--                    <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>-->
-                    <div class="form-group">
+<!--                    <div class="form-group">-->
+<!--                        <label for="exampleInputFile"></label>-->
+<!--                        <input type="file" class="dropify" id="image_file" data-height="300">-->
+<!--                    </div>-->
+                        <div class="form-group">
                         <div class="form-label-group">
-                            <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Activity name" required="required" autofocus="autofocus">
-                            <label for="activity_name">Activity name</label>
+                            <input type="text" name="recipe_name" id="recipe_name" class="form-control" placeholder="Recipe name" required="required" autofocus="autofocus">
+                            <label for="recipe_name">Recipe name</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="text" name="activity_category" id="activity_category" class="form-control" placeholder="Activity category" required="required">
-                            <label for="activity_category">Category</label>
+                            <input type="text" name="recipe_cuisine" id="recipe_cuisine" class="form-control" placeholder="Recipe Cuisine" required="required">
+                            <label for="recipe_cuisine">Cuisine</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="text" name="activity_venue" id="activity_venue" class="form-control" placeholder="Activity venue" required="required">
-                            <label for="activity_venue">Venue</label>
+                            <textarea type="text" rows="10" cols="30" name="recipe_step" id="recipe_step" class="form-control" placeholder="Recipe Step" required="required">Recipe Step</textarea>
+
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="date" name="activity_date" id="activity_date" class="form-control" placeholder="Activity date" required="required">
-                            <label for="activity_date">Date</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            <input type="time" name="activity_time" id="activity_time" class="form-control" placeholder="Activity time" required="required">
-                            <label for="activity_time">Time</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            <input type="text" name="activity_fees" id="activity_fees" class="form-control" placeholder="Activity fees" required="required">
-                            <label for="activity_fees">Fees ($)</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            <input type="text" name="activity_mobile_num" id="activity_mobile_num" class="form-control" placeholder="Activity contact number" required="required">
-                            <label for="activity_mobile_num">Contact Number</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            <input type="text" name="activity_desc" id="activity_desc" class="form-control" placeholder="Activity description" required="required">
-                            <label for="activity_desc">Description of Activity</label>
+                            <textarea type="text" rows="10" cols="30" name="recipe_ingredient" id="recipe_ingredient" class="form-control" placeholder="Recipe Ingredient" required="required">Recipe Ingredient</textarea>
                         </div>
                     </div>
                     <div class="controls">
                         <label>Upload Photo:</label>
-                        <input name="file" type="file"  id="image_file" required>
+                        <input name="file" type="file"  id="image_file">
                         <p class="help-block"></p>
                     </div>
                     <div class = "modal-footer">
@@ -464,8 +434,8 @@
                     </div>
 
                 </form>
-
             </div>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 
@@ -490,21 +460,28 @@
 <script src="<?php echo base_url('assets/ui_admin/js/demo/datatables-demo.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
 
+<script type="text/javascript" src="<?php echo base_url().'resources/js/jquery-3.2.1.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'resources/js/bootstrap.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'resources/dropify/js/dropify.js'?>"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.dropify').dropify();
+    });
+
+</script>
+
+
 <script>
     $(document).ready(function() {
         $("#editForm").submit(function(e) {
             // var actNameT = $("#activity_name_title").val();
-            var actId = $("#activity_id").val();
-            var actStatus = $("#activity_status").val();
-            var actName = $("#activity_name").val();
-            var actCat = $("#activity_category").val();
-            var actVenue = $("#activity_venue").val();
-            var actDate = $("#activity_date").val();
-            var actTime = $("#activity_time").val();
-            var actFees = $("#activity_fees").val();
-            var actMobileNum = $("#activity_mobile_num").val();
-            var actDesc = $("#activity_desc").val();
-            var url = "<?php echo site_url('index.php/AdminActivity/ajax_update') ?> ";
+            var recId = $("#recipe_id").val();
+            var recName = $("#recipe_name").val();
+            var reccuisine = $("#recipe_cuisine").val();
+            var recstep = $("#recipe_step").val();
+            var recingredient = $("#recipe_ingredient").val();
+            var url = "<?php echo site_url('index.php/ClientStatusRecipe/ajax_recipe_update') ?> ";
 
             $('#btnSave').text('saving...'); //change button text
             $('#btnSave').attr('disabled',true); //set button disable
@@ -551,7 +528,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminActivity/ajax_edit/')?>/" + activity_id,
+            url: "<?php echo site_url('index.php/ClientStatusRecipe/recipe_ajax_edit/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -570,19 +547,12 @@
 
 
                 // alert(data.activity_name);
-                $("#activity_id").val(data.activity_id);
-                $("#activity_status").val(data.activity_status);
+                $("#recipe_id").val(data.recipe_id);
+                $("#recipe_name").val(data.recipe_name);
+                $("#recipe_cuisine").val(data.recipe_cuisine);
+                $("#recipe_step").val(data.recipe_step);
+                $("#recipe_ingredient").val(data.recipe_ingredient);
 
-                $("#activity_name_title").text(data.activity_name);
-                $("#activity_name_title").val(data.activity_name);
-                $("#activity_name").val(data.activity_name);
-                $("#activity_category").val(data.activity_category);
-                $("#activity_venue").val(data.activity_venue);
-                $("#activity_date").val(data.activity_date);
-                $("#activity_time").val(data.activity_time);
-                $("#activity_fees").val(data.activity_fees);
-                $("#activity_mobile_num").val(data.activity_mobile_num);
-                $("#activity_desc").val(data.activity_desc);
             }
 
         });
@@ -596,7 +566,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminActivity/ajax_edit/')?>/" + activity_id,
+            url: "<?php echo site_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -630,16 +600,13 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminActivity/ajax_delete/')?>/" + activity_id,
+            url: "<?php echo site_url('index.php/ClientStatusRecipe/recipe_ajax_delete/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
                 //if success reload ajax table
-
-                if(data.status) {
-                    $('#deleteModal').modal('hide');
-                    table.ajax.reload(null, false);
-                }
+                $('#deleteModal').modal('hide');
+                table.ajax.reload(null,false);
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

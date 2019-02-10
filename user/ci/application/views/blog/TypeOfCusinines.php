@@ -38,15 +38,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#activity">Activity</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#recipe">Recipe</a>
-            </li>
+<!--            <li class="nav-item mx-0 mx-lg-1">-->
+<!--              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item mx-0 mx-lg-1">-->
+<!--              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="--><?php //echo base_url(). "index.php/activity_ctl/index/"; ?><!--">Activity</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item mx-0 mx-lg-1">-->
+<!--              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="--><?php //echo base_url(). "index.php/blog/cuisines/"; ?><!--">Recipe</a>-->
+<!--            </li>-->
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="#about" >About</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">Activity</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">Recipe</a>
+              </li>
           </ul>
         </div>
       </div>
@@ -76,9 +85,9 @@
                                     <i class="fas fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-<!--                            <img class="img-fluid" src="--><?php //echo base_url() ?><!--assets/uploaded_images/--><?php //echo $cuisine->recipeimage ?><!--" />-->
+                            <img class="img-fluid" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $cuisine->recipeimage ?>" />
                         </a>
-                        <h2 class="text-center mb-5"><?php echo $cuisine->recipename ?></h2>
+                        <h4 class="text-center mb-5"><?php echo $cuisine->recipename ?></h4>
                     </div>
                     <?php
                 }
@@ -94,15 +103,17 @@
                             success: function(response) {
                                 // alert(response);
                                 var recipe = JSON.parse(response);
+                                var text = recipe[0].recipestep;
+                                textstep = text.replace('/\r?\n/g', "\\r\\n");
                                 $("#recipe_id").text(button.id);
                                 $("#recipe_name_title").text(recipe[0].recipename);
                                 $("#recipe_cuisine").text(recipe[0].recipecuisine);
                                 $("#recipe_image").text(recipe[0].recipeimage);
-                                $("#recipe_step").text(recipe[0].recipestep);
+                                $("#recipe_step").text(textstep);
                                 $("#recipe_status").text(recipe[0].recipestatus);
                                 $("#recipe_ingredient").text(recipe[0].recipeingredient);
+                                $("#recipe_img").attr("src", '<?php echo base_url() ?>assets/uploaded_image/'+recipe[0].recipeimage);
                             }
-
                         });
                     }
                 </script>
@@ -144,7 +155,7 @@
 
     <!-- Portfolio Modals -->
 
-    <!-- Portfolio Modal 0 -->
+    Portfolio Modal 0
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-0">
         <div class="portfolio-modal-dialog bg-white">
             <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
@@ -156,12 +167,24 @@
                         <h2 class="text-secondary text-uppercase mb-0"><span id="recipe_name_title"></span></h2>
                         <span id="recipe_name_title"></span>
                         <hr class="star-dark mb-5">
-                        <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cabin.png');?>" alt="">
-                        <p class="mb-6"><span id="recipe_cuisine"></span></p>
-                        <p class="mb-6"><span id="recipe_image"></span>&nbsp;
-                        <p class="mb-6"><span id="recipe_step"></span></p>
-                        <p class="mb-6"><span id="recipe_status"></span></p>
-                        <p class="mb-6"><span id="recipe_ingredient"></span></p>
+                    </div>
+                    <div class="col-lg-5 mx-auto">
+                        <img id="recipe_img" class="img-fluid mb-5" src="" alt="">
+                    </div>
+
+                    <div class="col-lg-5 mx-auto">
+<!--                        <p class="mb-6"><span id="recipe_cuisine"></span></p>-->
+                        <h4>Steps</h4>
+                        <textarea readonly style="width:500px; height: 300px; border: none;" id="recipe_step" class="mb-6" ></textarea>
+                    </div>
+
+                    <div class="col-lg-4 mx-auto">
+                        <h4>Ingredients</h4>
+                        <textarea readonly style="width:500px; height: 300px; border: none;" id="recipe_ingredient" class="mb-6" ></textarea>
+<!--                        <p class="mb-6"><span id="recipe_ingredient"></span></p>-->
+                    </div>
+
+                    <div class="col-lg-12 mx-auto">
                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                             <i class="fa fa-close"></i>
                             Close Project</a>
@@ -172,31 +195,31 @@
     </div>
 
     <!-- Portfolio Modal 0 -->
-    <div class="portfolio-modal mfp-hide" id="portfolio-modal-0">
-        <div class="portfolio-modal-dialog bg-white">
-            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
-                <i class="fa fa-3x fa-times"></i>
-            </a>
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
-                        <span id="activity_name_title"></span>
-                        <hr class="star-dark mb-5">
-                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_images/<?php echo $article->activityimage ?>" alt="">
-                        <h4 class="text-uppercase mb-4"><span id="activity_venue"></span></h4>
-                        <h4 class="text-uppercase mb-4"><span id="activity_date"></span>&nbsp;<span id="activity_time"></span></h4>
-                        <h4 class="text-uppercase mb-4">Price:&nbsp;$<span id="activity_fees"></span> Per Pax</h4>
-                        <h4 class="text-uppercase mb-4"><span id="activity_desc"></span></p>
-                            <h4 class="mb-6"><span id="activity_fees"></span></h4>
-                            <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
-                                <i class="fa fa-close"></i>
-                                Close</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="portfolio-modal mfp-hide" id="portfolio-modal-0">-->
+<!--        <div class="portfolio-modal-dialog bg-white">-->
+<!--            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">-->
+<!--                <i class="fa fa-3x fa-times"></i>-->
+<!--            </a>-->
+<!--            <div class="container text-center">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-8 mx-auto">-->
+<!--                        <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>-->
+<!--                        <span id="activity_name_title"></span>-->
+<!--                        <hr class="star-dark mb-5">-->
+<!--                        <img id="recipe_img" class="img-fluid mb-5" src="" alt="">-->
+<!--                        <h4 class="text-uppercase mb-4"><span id="activity_venue"></span></h4>-->
+<!--                        <h4 class="text-uppercase mb-4"><span id="activity_date"></span>&nbsp;<span id="activity_time"></span></h4>-->
+<!--                        <h4 class="text-uppercase mb-4">Price:&nbsp;$<span id="activity_fees"></span> Per Pax</h4>-->
+<!--                        <h4 class="text-uppercase mb-4"><span id="activity_desc"></span></p>-->
+<!--                            <h4 class="mb-6"><span id="activity_fees"></span></h4>-->
+<!--                            <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">-->
+<!--                                <i class="fa fa-close"></i>-->
+<!--                                Close</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <!-- Bootstrap core JavaScript -->

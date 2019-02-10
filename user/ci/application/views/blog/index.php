@@ -39,13 +39,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+              <a  href="#about" >About</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#activity">Activity</a>
+               <a  href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">Activity</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#recipe">Recipe</a>
+              <a  href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">Recipe</a>
             </li>
           </ul>
         </div>

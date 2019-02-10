@@ -38,15 +38,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#activity">Activity</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#recipe">Recipe</a>
-            </li>
+<!--            <li class="nav-item mx-0 mx-lg-1">-->
+<!--              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>-->
+<!--            </li>-->
+<!--              <li class="nav-item mx-0 mx-lg-1">-->
+<!--                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="--><?php //echo base_url(). "index.php/activity_ctl/index/"; ?><!--">Activity</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item mx-0 mx-lg-1">-->
+<!--                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="--><?php //echo base_url(). "index.php/blog/cuisines/"; ?><!--">Recipe</a>-->
+<!--              </li>-->
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="#about" >About</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">Activity</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a  href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">Recipe</a>
+              </li>
           </ul>
         </div>
       </div>
@@ -98,7 +107,7 @@
                     <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Indian">
                         <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                             <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                                <i class="fas fa-search-plus fa-3x"></i>
+<!--                                <i class="fas fa-search-plus fa-3x"></i>-->
                             </div>
                         </div>
                         <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/indian3_cuisine.jpg');?>" alt="">
@@ -112,7 +121,7 @@
                     <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Western">
                         <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                             <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                                <i class="fas fa-search-plus fa-3x"></i>
+<!--                                <i class="fas fa-search-plus fa-3x"></i>-->
                             </div>
                         </div>
                         <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/western.jpg');?>" alt="">
@@ -126,7 +135,7 @@
                     <a href="<?php echo base_url(). "index.php/Cuisines/index"; ?>/Vegan">
                         <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                             <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                                <i class="fas fa-search-plus fa-3x"></i>
+<!--                                <i class="fas fa-search-plus fa-3x"></i>-->
                             </div>
                         </div>
                         <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/vegan1_cuisine.jpg');?>" alt="">

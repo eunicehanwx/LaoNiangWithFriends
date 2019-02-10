@@ -103,7 +103,13 @@
         <li class="nav-item active">
             <a class="nav-link" href="<?php echo base_url('index.php/ClientStatus')?>">
                 <i class="fas fa-th-list"></i>
-                <span>My Requests</span></a>
+                <span>My Activities</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('index.php/ClientStatusRecipe')?>">
+                <i class="fas fa-th-list"></i>
+                <span>My Recipes</span></a>
         </li>
 
         <li class="nav-item">
@@ -172,19 +178,24 @@
                                         <?php } ?>
 
                                         <td>
-                                            <!-- Button edit/review trigger modal -->
-                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='reviewDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#editModal">
-                                                <i class="far fa-edit"></i>
-                                                <span>Edit/Review</span>
-                                            </button>
+                                            <?php if (($activity->activity_status) == 'APPROVED') { ?>
 
+                                            <?php }  else { ?>
+                                                <button id=" <?php echo $activity->activity_id; ?> " onclick='reviewDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#editModal">
+                                                    <i class="far fa-edit"></i>
+                                                    <span>Edit/Review</span>
+                                                </button>
+                                            <?php } ?>
                                             <hr>
-
-                                            <!-- Button view trigger modal -->
-                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='showDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewModal">
+                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='showUser(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewUser">
                                                 <i class="far fa-eye"></i>
                                                 <span></span>
                                             </button>
+                                            <!-- Button view trigger modal -->
+<!--                                            <button id=" --><?php //echo $activity->activity_id; ?><!-- " onclick='showDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewModal">-->
+<!--                                                <i class="far fa-eye"></i>-->
+<!--                                                <span></span>-->
+<!--                                            </button>-->
                                             <!-- Button remove trigger modal -->
                                             <button id=" <?php echo $activity->activity_id; ?> " onclick='deleteDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">
                                                 <i class="far fa-trash-alt"></i>
@@ -459,6 +470,38 @@
 
 </div><!-- /.modal -->
 
+<!-- View User -->
+<div class="modal fade" id="viewUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class = "modal-title" id = "myModalLabel">
+                    <!--This Modal title-->
+                    <span id="activity_name_title_v"></span>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-bordered" name="userTable" id="userTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <label id="user_name">Nothing</label>
+                    <table class="table table-hover table-bordered" id="userdataTable" name="userdataTable"></table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url('assets/ui_admin/vendor/jquery/jquery.min.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
@@ -504,7 +547,7 @@
             var actFees = $("#activity_fees").val();
             var actMobileNum = $("#activity_mobile_num").val();
             var actDesc = $("#activity_desc").val();
-            var url = "<?php echo site_url('index.php/AdminStatus/ajax_update') ?> ";
+            var url = "<?php echo base_url('index.php/AdminStatus/ajax_update') ?> ";
 
             $('#btnSave').text('saving...'); //change button text
             $('#btnSave').attr('disabled',true); //set button disable
@@ -551,7 +594,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
+            url: "<?php echo base_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -596,7 +639,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
+            url: "<?php echo base_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -630,7 +673,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminStatus/ajax_delete/')?>/" + activity_id,
+            url: "<?php echo base_url('index.php/AdminStatus/ajax_delete/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -641,6 +684,58 @@
             error: function (jqXHR, textStatus, errorThrown)
             {
                 alert('Error deleting data');
+            }
+
+        });
+    }
+
+    function showUser(button) {
+
+        var activity_id = button.id;
+        activity_id = activity_id.replace(/\s+/g, '');
+
+        alert(activity_id);
+        //AJAX call to get activity_id details
+        $.ajax({
+            url: "<?php echo site_url('index.php/ClientStatus/user_ajax_get/')?>/" + activity_id,
+            method: "GET",
+            // dataType: "JSON",
+            success: function(data) {
+                // alert(data);
+                var data = JSON.parse(data);
+                // alert(data.activity_name);
+                $("#user_name").text('Total registered user: ' + data.length);
+                var result = '';
+                for (var i = 0; i < data.length; i++) {
+                    result += '<tr><td>' + data[i].user_name + '</td><td>' + data[i].user_mobile_num + '</td></tr>';
+                };
+                $('#userdataTable').empty();
+                $('#userdataTable').append(result);
+
+
+
+                // var trHTML = '';
+                // $.each(data, function (key, item) {
+                //     trHTML += '<tr><td>' + item.user_name + '</td><td>' + item.user_mobile_num + '</td></tr>';
+                // };
+                // $('#userTable').append(trHTML);
+
+
+
+
+
+                // $("#activity_status_v").val(data.activity_status).attr("disabled", true);
+                //
+                // $("#activity_name_title_v").text(data.activity_name);
+                // $("#activity_name_title_v").val(data.activity_name);
+                // $("#activity_name_v").val(data.activity_name);
+                // $("#activity_category_v").val(data.activity_category);
+                // $("#activity_venue_v").val(data.activity_venue);
+                // $("#activity_date_v").val(data.activity_date);
+                // $("#activity_time_v").val(data.activity_time);
+                // $("#activity_fees_v").val(data.activity_fees);
+                // $("#activity_mobile_num_v").val(data.activity_mobile_num);
+                // $("#activity_desc_v").val(data.activity_desc);
             }
 
         });

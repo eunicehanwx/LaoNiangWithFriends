@@ -13,7 +13,9 @@ class recipeUpload extends CI_Controller{
     }
 
 	function add_new(){
-		$this->load->view('client/registerRecipe');
+        $this->load->model('Clientmodel');
+        $data['cuisines'] = $this->Clientmodel->get_cuisine();
+		$this->load->view('client/registerRecipe', $data);
 	}
 
 	function do_upload(){

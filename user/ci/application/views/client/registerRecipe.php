@@ -104,7 +104,13 @@
         <li class="nav-item active">
             <a class="nav-link" href="<?php echo base_url('index.php/ClientStatus')?>">
                 <i class="fas fa-th-list"></i>
-                <span>My Requests</span></a>
+                <span>My Activities</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('index.php/ClientStatus')?>">
+                <i class="fas fa-th-list"></i>
+                <span>My Recipes</span></a>
         </li>
 
         <li class="nav-item">
@@ -138,13 +144,24 @@
                         <input type="text" name="title" class="form-control" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="cuisine" class="form-control" placeholder="Cuisine">
+                        <!--                        <input type="text" name="category" class="form-control" placeholder="Category">-->
+                        <select name="category" class="form-control" placeholder="Category">
+
+                            <option value="">Select Cuisine</option>
+
+                            <?php foreach($cuisines as $cuisine) {?>
+                                <option value="<?php echo $cuisine->cuisine_name; ?>"><?php echo $cuisine->cuisine_name; ?></option>
+
+                            <?php }?>
+
+
+                        </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="ingredient" class="form-control" placeholder="Ingredient">
+                        <textarea type="text" rows="10" cols="30" name="ingredient" class="form-control" placeholder="Ingredient" required="required">Recipe Ingredient</textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="step" class="form-control" placeholder="Step">
+                        <textarea type="text" rows="10" cols="30" name="step" class="form-control" placeholder="Step" required="required">Recipe Ingredient</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Upload</button>
                 </form>
