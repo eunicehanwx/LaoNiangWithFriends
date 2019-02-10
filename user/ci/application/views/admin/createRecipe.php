@@ -112,13 +112,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php base_url('index.php/AdminRecipe/viewRecipe') ?>">
+            <a class="nav-link" href="<?php ?>">
                 <i class="fas fa-th-list"></i>
                 <span>Review all recipe request</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php base_url('index.php/AdminRecipe/createRecipe') ?>">
+            <a class="nav-link" href="<?php ?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Recipe</span></a>
         </li>
@@ -157,7 +157,7 @@
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Review Requests</li>
+                <li class="breadcrumb-item active">Review Recipe Requests</li>
             </ol>
 
             <!-- DataTables Example -->
@@ -169,12 +169,12 @@
                 <div class="card-body">
                     <form method="post" action="" id="createForm" role="form">
 
-                        <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>
+                        <p>*Insert Recipe Photo Blob here*<span id="activity_image"></span></p>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Activity name" required="required" autofocus="autofocus">
-                                <label for="activity_name">Activity name</label>
+                                <input type="text" name="recipe_name" id="recipe_name" class="form-control" placeholder="Recipe name" required="required" autofocus="autofocus">
+                                <label for="recipe_name">Recipe name</label>
                             </div>
                         </div>
 <!--                        <div class="form-group">-->
@@ -188,12 +188,12 @@
                             <div class="form-label-group">
                                 <!--                                                    <input type="option" name="activity_status" id="activity_status" class="form-control" placeholder="Activity status" required="required">-->
                                 <!--                                                    <label for="activity_status">Status</label>-->
-                                <select name="activity_category" id="activity_category" class="form-control" placeholder="Activity category">
+                                <select name="recipe_category" id="recipe_category" class="form-control" placeholder="Recipe category">
                                     <!--                                                        <option value=""></option>-->
 <!--                                    <option value="REJECTED">REJECT</option>-->
 <!--                                    <option value="APPROVED">APPROVE</option>-->
 
-                                    <option value="">Select Category</option>
+                                    <option value="">Select Cuisine</option>
                                     <?php foreach($categories as $category) { ?>
 
                                         <option value="<?php echo $category->category_name; ?>"><?php echo $category->category_name; ?></option>

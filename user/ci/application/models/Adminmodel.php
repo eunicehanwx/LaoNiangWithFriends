@@ -12,6 +12,24 @@ class Adminmodel extends CI_Model{
         $this->load->database();
     }
 
+    function get_cuisine_list()
+    {
+        //do soft delete https://forum.codeigniter.com/archive/index.php?thread-43130.html
+
+        $this->db->from('cuisine');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    function get_recipe_list()
+    {
+        //do soft delete https://forum.codeigniter.com/archive/index.php?thread-43130.html
+
+        $this->db->from('recipe');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
     function get_client_list()
     {
         //do soft delete https://forum.codeigniter.com/archive/index.php?thread-43130.html
