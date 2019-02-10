@@ -589,7 +589,7 @@
             success: function(response) {
                 // alert(response);
                 alert("success");
-                $( "#deleteId" ).click(function() { 
+                $( "#deleteId" ).click(function() {
                     deleteDetails(recipe_id);
                 });
             }

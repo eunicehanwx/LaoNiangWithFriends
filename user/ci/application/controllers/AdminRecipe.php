@@ -65,22 +65,27 @@
           $this->Adminmodel->delete($id, 'recipe', 'recipe_id');
      }
 
-     public function ajax_create ()
+     public function ajax_create()
      {
+
+         $recipe_id = $this->input->post('recipe_id');
+
+         $config['upload_path'] = "./assets/uploaded_image";
+         $config['allowed_types']='gif|jpg|png';
+         $this->load->library('upload',$config);
+         if($this->upload->do_upload("file")) {
+             $data = array('upload_data' => $this->upload->data());
+         }
+
          $data = array(
-//             'activity_id' => $this->Adminmodel->get_max_id(),
-             'activity_name' => $this->input->post('activity_name'),
-             'activity_category' => $this->input->post('activity_category'),
-             'activity_venue' => $this->input->post('activity_venue'),
-             'activity_time' => $this->input->post('activity_time'),
-             'activity_date' => $this->input->post('activity_date'),
-             'activity_desc' => $this->input->post('activity_desc'),
-             'activity_fees' => $this->input->post('activity_fees'),
-             'activity_mobile_num' => $this->input->post('activity_mobile_num'),
-             'activity_image' => $this->input->post('activity_image'),
-             'activity_status' => "pending",
+             'recipe_name' => $this->input->post('recipe_name'),
+             'recipe_cuisine' => $this->input->post('recipe_cuisine'),
+             'recipe_image' =>  $data['upload_data']['file_name'],
+             'recipe_step' => $this->input->post('recipe_step'),
+             'recipe_ingredient' => $this->input->post('recipe_ingredient'),
+             'recipe_status' => "pending",
          );
-         $this->Adminmodel->create($data);
+         $this->Adminmodel->create($data, 'recipe');
      }
 
      public function ajax_update()

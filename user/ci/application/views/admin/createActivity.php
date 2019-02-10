@@ -357,8 +357,6 @@
             $('#btnSave').attr('disabled',true); //set button disable
 
             $.ajax({
-
-
                 url : url,
                 method: "POST",
                 data: new FormData(this),

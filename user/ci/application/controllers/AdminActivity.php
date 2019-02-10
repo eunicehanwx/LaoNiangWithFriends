@@ -136,7 +136,7 @@
              'activity_image' =>  $data['upload_data']['file_name'],
              'activity_status' => "pending",
          );
-         $this->Adminmodel->create($data);
+         $this->Adminmodel->create($data, 'activity');
      }
 
      public function ajax_update()

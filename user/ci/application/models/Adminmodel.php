@@ -78,9 +78,9 @@ class Adminmodel extends CI_Model{
         return $maxid;
     }
 
-    public function create($data)
+    public function create($data, $table)
     {
-        $this->db->insert('activity', $data);
+        $this->db->insert($table, $data);
     }
 
     public function update($where, $data, $table, $col)

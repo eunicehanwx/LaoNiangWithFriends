@@ -167,7 +167,14 @@
                     Create new recipes ...
                 </div>
                 <div class="card-body">
-                    <form method="post" action="" id="createForm" role="form">
+                    <form method="post" action="" id="createForm" role="form" enctype="multipart/form-data" >
+
+                        <div class="controls">
+                            <label>Upload Photo:</label>
+                            <input name="file" type="file"  id="image_file">
+                            <p class="help-block"></p>
+                        </div>
+
                         <div class="form-group">
                             <div class="form-label-group">
                                 <input type="text" name="recipe_name" id="recipe_name" class="form-control" placeholder="Recipe name" required="required" autofocus="autofocus">
@@ -196,20 +203,16 @@
                             </div>
                         </div>
 
-                        <p>*Insert Recipe Photo Blob here*<span id="activity_image"></span></p>
+<!--                        <p>*Insert Recipe Photo Blob here*<span id="activity_image"></span></p>-->
 
                         <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" name="recipe_step" id="recipe_step" class="form-control" placeholder="Recipe steps" required="required">
-                                <label for="recipe_step">Steps</label>
-                            </div>
+                            <label for="recipe_step">Steps</label>
+                            <textarea class="form-control" name="recipe_step" id="recipe_step" rows="7" required></textarea>
                         </div>
 
                         <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" name="recipe_ingredient" id="recipe_ingredient" class="form-control" placeholder="Recipe ingredient" required="required">
-                                <label for="recipe_ingredient">Ingredients</label>
-                            </div>
+                            <label for="recipe_ingredient">Ingredient</label>
+                            <textarea class="form-control" name="recipe_ingredient" id="recipe_ingredient" rows="7" required></textarea>
                         </div>
 
                         <div class = "modal-footer">
@@ -300,18 +303,12 @@
 <script>
     $(document).ready(function() {
         $("#createForm").submit(function(e) {
-            // var actNameT = $("#activity_name_title").val();
-            // var actId = $("#activity_id").val();
-            // var actStatus = $("#activity_status").val();
-            var actName = $("#activity_name").val();
-            var actCat = $("#activity_category").val();
-            var actVenue = $("#activity_venue").val();
-            var actDate = $("#activity_date").val();
-            var actTime = $("#activity_time").val();
-            var actFees = $("#activity_fees").val();
-            var actMobileNum = $("#activity_mobile_num").val();
-            var actDesc = $("#activity_desc").val();
-            var url = "<?php echo site_url('index.php/AdminActivity/ajax_create') ?> ";
+
+            var recName = $("#recipe_name").val();
+            var recCui = $("#recipe_cuisine").val();
+            var recStep = $("#recipe_step").val();
+            var recIng = $("#recipe_ingredient").val();
+            var url = "<?php echo site_url('index.php/AdminRecipe/ajax_create') ?> ";
 
             $('#btnSave').text('saving...'); //change button text
             $('#btnSave').attr('disabled',true); //set button disable
@@ -319,14 +316,19 @@
             $.ajax({
                 url : url,
                 method: "POST",
-                data: {activity_name: actName, activity_category: actCat, activity_venue: actVenue,
-                    activity_date: actDate, activity_time: actTime, activity_fees: actFees,
-                    activity_mobile_num: actMobileNum, activity_desc: actDesc},
+                data: new FormData(this),
+                processData:false,
+                contentType:false,
+                cache:false,
+                async:false,
+                    // {recipe_name: recName, recipe_cuisine: recCui, recipe_ingredients: recIng},
+                //     activity_date: actDate, activity_time: actTime, activity_fees: actFees,
+                //     activity_mobile_num: actMobileNum, activity_desc: actDesc},
                 success: function(data)
                 {
                     alert("success");
 
-                    top.location.href="<?php echo base_url('index.php/AdminActivity')?>";
+                    top.location.href="<?php echo base_url('index.php/AdminRecipe/viewRecipe')?>";
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
