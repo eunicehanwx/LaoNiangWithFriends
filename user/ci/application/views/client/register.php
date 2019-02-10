@@ -216,10 +216,10 @@
 <script src="<?php echo base_url('assets/ui_admin/js/demo/datatables-demo.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('resources/js/jquery-3.2.1.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('resources/js/bootstrap.js');?>"></script>
+<!--<script type="text/javascript" src="--><?php //echo base_url('resources/js/jquery-3.2.1.js');?><!--"></script>-->
+<!--<script type="text/javascript" src="--><?php //echo base_url('resources/js/bootstrap.js');?><!--"></script>-->
 <script type="text/javascript" src="<?php echo base_url('resources/dropify/js/dropify.js');?>"></script>
-
+<!---->
 
 <script type="text/javascript">
     $(document).ready(function(){

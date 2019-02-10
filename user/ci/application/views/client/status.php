@@ -123,7 +123,6 @@
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Recipe</span></a>
         </li>
-
     </ul>
 
     <div id="content-wrapper">
@@ -405,6 +404,20 @@
                             <label for="activity_name">Activity name</label>
                         </div>
                     </div>
+<!--                    <div class="form-group">-->
+<!--                                                <input type="text" name="category" class="form-control" placeholder="Category">-->
+<!--                        <select name="activity_category"  id="activity_category"class="form-control" placeholder="Category">-->
+<!---->
+<!--                            <option value="">Select Category</option>-->
+<!---->
+<!--                            --><?php //foreach($categories as $category) {?>
+<!--                                <option value="--><?php //echo $category->category_name; ?><!--">--><?php //echo $category->category_name; ?><!--</option>-->
+<!---->
+<!--                            --><?php //}?>
+<!---->
+<!---->
+<!--                        </select>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="text" name="activity_category" id="activity_category" class="form-control" placeholder="Activity category" required="required">
@@ -521,9 +534,9 @@
 <script src="<?php echo base_url('assets/ui_admin/js/demo/datatables-demo.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url().'resources/js/jquery-3.2.1.js'?>"></script>
-<script type="text/javascript" src="<?php echo base_url().'resources/js/bootstrap.js'?>"></script>
-<script type="text/javascript" src="<?php echo base_url().'resources/dropify/js/dropify.js'?>"></script>
+<!--<script type="text/javascript" src="--><?php //echo base_url().'resources/js/jquery-3.2.1.js'?><!--"></script>-->
+<!--<script type="text/javascript" src="--><?php //echo base_url().'resources/js/bootstrap.js'?><!--"></script>-->
+<!--<script type="text/javascript" src="--><?php //echo base_url().'resources/dropify/js/dropify.js'?><!--"></script>-->
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -547,7 +560,7 @@
             var actFees = $("#activity_fees").val();
             var actMobileNum = $("#activity_mobile_num").val();
             var actDesc = $("#activity_desc").val();
-            var url = "<?php echo base_url('index.php/AdminStatus/ajax_update') ?> ";
+            var url = "<?php echo base_url('index.php/ClientStatus/ajax_update') ?> ";
 
             $('#btnSave').text('saving...'); //change button text
             $('#btnSave').attr('disabled',true); //set button disable
@@ -594,7 +607,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo base_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
+            url: "<?php echo base_url('index.php/AdminActivity/ajax_edit/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -639,7 +652,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo base_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
+            url: "<?php echo base_url('index.php/AdminActivity/ajax_edit/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
@@ -673,7 +686,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo base_url('index.php/AdminStatus/ajax_delete/')?>/" + activity_id,
+            url: "<?php echo base_url('index.php/AdminActivity/ajax_delete/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {

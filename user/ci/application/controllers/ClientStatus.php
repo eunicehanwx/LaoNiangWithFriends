@@ -29,6 +29,9 @@
 
          $this->load->database();
          $this->load->model('Clientmodel');
+         $this->load->model('Adminmodel');
+         $this->load->model('upload_model');
+
      }
 
      public function index()
@@ -41,7 +44,8 @@
          $this->load->helper('url');
          $arrayData = array(
              "activities" => $this->Clientmodel->get_client_activity_list($user_data),
-             "users" => $this->Clientmodel->user_get_by_id(2)
+             "users" => $this->Clientmodel->user_get_by_id($user_data),
+             "categories" => $this->upload_model->get_category(),
          );
          $this->load->view('client/status', $arrayData);
 
@@ -109,10 +113,11 @@
              'activity_fees' => $this->input->post('activity_fees'),
              'activity_mobile_num' => $this->input->post('activity_mobile_num'),
              'activity_image' =>  $data['upload_data']['file_name'],
-             'activity_status' => $this->input->post('activity_status'),
+             'activity_status' => "pending",
          );
-         $this->Adminmodel->update($activity_id, $data);
+         $this->Adminmodel->update($activity_id, $data, 'activity', 'activity_id');
      }
+
      public function ajax_recipe_update()
      {
 //         $this->_validate();
