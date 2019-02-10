@@ -111,6 +111,10 @@
      {
           $this->Adminmodel->delete($id, 'activity', 'activity_id');
      }
+     public function activity_ajax_delete($id)
+     {
+         $this->Adminmodel->activity_delete($id);
+     }
 
      public function ajax_create ()
      {

@@ -70,7 +70,7 @@
       <div class="container text-center">
         <h1 class="text-uppercase mb-0">Lao Niang with Friends</h1>
         <hr class="star-dark">
-        <h2 class="font-weight-light mb-0">Activitys</h2>
+        <h2 class="font-weight-light mb-0">Activities</h2>
           <br />
          <form class="text-uppercase mb-0" action="" method="post" style="font-size:20pt;">
               <select name="field" >
@@ -206,7 +206,8 @@
                         <h4 class="mb-6"><span id="activity_fees"></span></h4>
                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                             <i class="fa fa-close"></i>
-                            Close</a>
+                            Close
+                        </a>
                     </div>
                     <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >
                         <input type="hidden" id="actid" name="actid" value="<?php echo $article->activityid; ?>" >

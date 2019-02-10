@@ -20,7 +20,7 @@ class Blogmodel extends CI_Model{
         $this->db->select('activity_desc');
         $this->db->select('activity_fees');
         $this->db->select('activity_image');
-//        $this->db->where('activity_status', 'pending');
+        $this->db->like('activity_status', 'APPROVED');
         $query = $this->db->get('activity'); // put in the table name
         $result = $query->result();
         $list = Array();
@@ -60,6 +60,7 @@ class Blogmodel extends CI_Model{
 
     function get_distinct_venue_list(){
         $this->db->distinct('activity_venue');
+        $this->db->like('activity_status', 'APPROVED');
         $query = $this->db->get("activity");
         $result = $query->result();
         $list = Array();

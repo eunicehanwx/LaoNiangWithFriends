@@ -95,6 +95,15 @@ class Adminmodel extends CI_Model{
         $this->db->delete($table);
     }
 
+    public function activity_delete($where)
+    {
+        $data = array(
+            'activity_status' => "DELETED",
+        );
+        $this->db->where('activity_id', $where);
+        $this->db->update('activity',$data);
+    }
+
     public function catCreate($data)
     {
         $this->db->insert('category', $data);

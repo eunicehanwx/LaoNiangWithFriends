@@ -318,7 +318,6 @@
 
                     </div>
                 </div>
-
                 <p><span id="activity_image_v"></span></p>
                 <div class="form-group">
                     <div class="form-label-group">
@@ -420,6 +419,8 @@
                             <label for="activity_name">Activity name</label>
                         </div>
                     </div>
+
+
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="text" name="activity_category" id="activity_category" class="form-control" placeholder="Activity category" required="required">
@@ -650,7 +651,7 @@
         alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
-            url: "<?php echo site_url('index.php/AdminActivity/ajax_delete/')?>/" + activity_id,
+            url: "<?php echo site_url('index.php/AdminActivity/activity_ajax_delete/')?>/" + activity_id,
             method: "GET",
             // dataType: "JSON",
             success: function(data) {
