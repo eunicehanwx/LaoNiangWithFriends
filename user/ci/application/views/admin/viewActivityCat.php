@@ -9,9 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Review Status</title>
+    <title>Category</title>
 
-    <!-- Bootstrap core CSS-->
+    <!-- Bootstrap CSS-->
     <link href="<?php echo base_url('assets/ui_admin/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
@@ -112,28 +112,28 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient')?>">
-                <i class="fab fa-wpforms"></i>
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/viewClient')?>">
+                <i class="fas fa-handshake"></i>
                 <span>View all clients</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createClient')?>">
-                <i class="fab fa-wpforms"></i>
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/createClient')?>">
+                <i class="fas fa-handshake"></i>
                 <span>Create Clients</span></a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivityCat')?>">
-                <i class="fab fa-wpforms"></i>
-                <span>Create New Category</span></a>
         </li>
 
         <li class="nav-item active">
             <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>">
                 <i class="fab fa-wpforms"></i>
-                <span>View all Categories</span></a>
+                <span>Categories</span></a>
         </li>
+
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="--><?php //echo base_url('index.php/AdminActivity/createActivityCat')?><!--">-->
+<!--                <i class="fab fa-wpforms"></i>-->
+<!--                <span>Create New Category</span></a>-->
+<!--        </li>-->
     </ul>
 
     <div id="content-wrapper">
@@ -145,14 +145,38 @@
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Review Requests</li>
+                <li class="breadcrumb-item active">Review Category</li>
             </ol>
 
             <!-- DataTables Example -->
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Categories ...
+                    Create new category for activities ...
+                </div>
+                <div class="card-body">
+                    <form method="post" action="" id="createCat" role="form">
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" name="create_category_name" id="create_category_name" class="form-control" placeholder="Create category name" required="required" autofocus="autofocus">
+                                <label for="create_category_name">Category name</label>
+                            </div>
+                        </div>
+
+                        <div class = "modal-footer">
+                            <button type="submit" id="btnSave" class = "btn btn-primary" name = "btnSave">
+                                Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    All Categories ...
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -174,16 +198,15 @@
                                             <!-- Button edit/review trigger modal -->
                                             <button id=" <?php echo $category->category_id; ?> " onclick='reviewDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#editModal">
                                                 <i class="far fa-edit"></i>
-                                                <span>Edit/Review</span>
+                                                <span></span>
                                             </button>
-
-                                            <hr>
 
                                             <!-- Button view trigger modal -->
                                             <button id=" <?php echo $category->category_id; ?> " onclick='showDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewModal">
                                                 <i class="far fa-eye"></i>
                                                 <span></span>
                                             </button>
+
                                             <!-- Button remove trigger modal -->
                                             <button id=" <?php echo $category->category_id; ?> " onclick='deleteDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">
                                                 <i class="far fa-trash-alt"></i>
@@ -333,7 +356,7 @@
                     <input type="hidden" value="" name="category_id" id="category_id"/>
 
 
-                    <p>*Insert Activity Photo Blob here*<span id="category_image"></span></p>
+<!--                    <p>*Insert Activity Photo Blob here*<span id="category_image"></span></p>-->
 
                     <div class="form-group">
                         <div class="form-label-group">
@@ -375,6 +398,40 @@
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
 
 <script>
+    //new category
+    $(document).ready(function() {
+        $("#createCat").submit(function(e) {
+            // var actNameT = $("#activity_name_title").val();
+            // var actId = $("#activity_id").val();
+            // var actStatus = $("#activity_status").val();
+            var catName = $("#create_category_name").val();
+            var url = "<?php echo site_url('index.php/AdminActivity/ajax_cat_create') ?> ";
+
+            $('#btnSave').text('saving...'); //change button text
+            $('#btnSave').attr('disabled',true); //set button disable
+
+            $.ajax({
+                url : url,
+                method: "POST",
+                data: {category_name: catName},
+                success: function(data)
+                {
+                    alert("success");
+
+                    top.location.href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>";
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error adding / update data');
+                    $('#btnSave').text('Save changes'); //change button text
+                    $('#btnSave').attr('disabled',false); //set button enable
+
+                }
+            });
+        });
+    });
+
+
     $(document).ready(function() {
         $("#editForm").submit(function(e) {
             // var actNameT = $("#activity_name_title").val();

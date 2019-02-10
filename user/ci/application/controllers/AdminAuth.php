@@ -81,13 +81,12 @@
              $this->form_validation->set_rules('admin_confirmpassword', 'Confirm Password', 'required|min_length[5]|matches[admin_inputpassword]');
 
              if ($this->form_validation->run() == TRUE) {
-//                 echo 'form validated';
 
-                 $admin_email = $_POST['admin_email'];
+                 $admin_username = $_POST['admin_username'];
 
                  $this->db->select('*');
                  $this->db->from('admin');
-                 $this->db->where('admin_email',$admin_email);
+                 $this->db->where('admin_username',$admin_username);
                  $query=$this->db->get();
 
                  $user = $query->row();
@@ -103,7 +102,7 @@
                      $this->session->set_flashdata("success", "Your account has been created");
                      redirect("index.php/AdminAuth/register", "refresh");
                  } else {
-                     $this->session->set_flashdata("error", "This email has already been registered");
+                     $this->session->set_flashdata("error", "This username has already been registered");
                  }
              }
          }

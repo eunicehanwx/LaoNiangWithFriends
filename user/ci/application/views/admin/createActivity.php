@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Review Status</title>
+    <title>Create Activity</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url('assets/ui_admin/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -100,9 +100,9 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivity')?>">
                 <i class="fas fa-th-list"></i>
-                <span>Review all requests</span></a>
+                <span>Review all activity requests</span></a>
         </li>
 
         <li class="nav-item active">
@@ -112,16 +112,40 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient')?>">
+            <a class="nav-link" href="<?php ?>">
+                <i class="fas fa-th-list"></i>
+                <span>Review all recipe request</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?php ?>">
                 <i class="fab fa-wpforms"></i>
+                <span>Create New Recipe</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/viewClient')?>">
+                <i class="fas fa-handshake"></i>
                 <span>View all clients</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivityCat')?>">
-                <i class="fab fa-wpforms"></i>
-                <span>Create New Category</span></a>
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/createClient')?>">
+                <i class="fas fa-handshake"></i>
+                <span>Create Clients</span></a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>">
+                <i class="fab fa-wpforms"></i>
+                <span>Categories</span></a>
+        </li>
+
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link" href="--><?php //echo base_url('index.php/AdminActivity/createActivityCat')?><!--">-->
+        <!--                <i class="fab fa-wpforms"></i>-->
+        <!--                <span>Create New Category</span></a>-->
+        <!--        </li>-->
     </ul>
 
     <div id="content-wrapper">

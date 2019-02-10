@@ -40,37 +40,84 @@
 
      public function createClient()
      {
-         $this->load->helper('url');
-//         $data['clients'] = $this->Adminmodel->get_client_list();
-         $this->load->view('admin/createClient');
 
-     }
-
-     public function register() {
-
-         if(isset($_POST['reg_user'])) {
-             $this->form_validation->set_rules('admin_username', 'Username', 'required');
-             $this->form_validation->set_rules('admin_email', 'Email', 'required');
-             $this->form_validation->set_rules('admin_inputpassword', 'Password', 'required|min_length[5]');
-             $this->form_validation->set_rules('admin_confirmpassword', 'Confirm Password', 'required|min_length[5]|matches[admin_inputpassword]');
+         if(isset($_POST['btnCreateClient'])) {
+             $this->form_validation->set_rules('client_name', 'Name', 'required');
+             $this->form_validation->set_rules('client_email', 'Email', 'required');
+             $this->form_validation->set_rules('client_mobile_num', 'Mobile Num', 'required');
+             $this->form_validation->set_rules('client_dept', 'Department', 'required');
+             $this->form_validation->set_rules('client_org', 'Organization', 'required');
+             $this->form_validation->set_rules('client_password', 'Password', 'required|min_length[5]');
+             $this->form_validation->set_rules('client_cfm_password', 'Confirm Password', 'required|min_length[5]|matches[client_password]');
 
              if ($this->form_validation->run() == TRUE) {
 //                 echo 'form validated';
 
-                 $admin_email = $_POST['admin_email'];
+                 $client_email = $_POST['client_email'];
 
                  $this->db->select('*');
-                 $this->db->from('admin');
-                 $this->db->where('admin_email',$admin_email);
+                 $this->db->from('client');
+                 $this->db->where('client_email',$client_email);
                  $query=$this->db->get();
 
                  $user = $query->row();
 
                  if (!$user) {
                      $data = array(
-                         'admin_name' => $_POST['admin_username'],
-                         'admin_email' => $_POST['admin_email'],
-                         'admin_password' => md5($_POST['admin_confirmpassword'])
+                         'client_name' => $_POST['client_name'],
+                         'client_email' => $_POST['client_email'],
+                         'client_mobile_num' => $_POST['client_mobile_num'],
+                         'client_dept' => $_POST['client_dept'],
+                         'client_org' => $_POST['client_org'],
+                         'client_password' => $_POST['client_cfm_password']
+                     );
+                     $this->db->insert('client', $data);
+
+                     $this->session->set_flashdata("success", "Your account has been created");
+                     redirect("index.php/AdminManageClient/createClient", "refresh");
+                 } else {
+                     $this->session->set_flashdata("error", "This email has already been registered");
+                 }
+             }
+         }
+
+         $this->load->helper('url');
+//         $data['clients'] = $this->Adminmodel->get_client_list();
+         $this->load->view('admin/createClient');
+
+     }
+
+     public function registerClient() {
+
+         if(isset($_POST['btnCreateClient'])) {
+             $this->form_validation->set_rules('client_name', 'Name', 'required');
+             $this->form_validation->set_rules('client_email', 'Email', 'required');
+             $this->form_validation->set_rules('client_mobile_num', 'Mobile Num', 'required');
+             $this->form_validation->set_rules('client_dept', 'Department', 'required');
+             $this->form_validation->set_rules('client_org', 'Organization', 'required');
+             $this->form_validation->set_rules('client_password', 'Password', 'required|min_length[5]');
+             $this->form_validation->set_rules('client_cfm_password', 'Confirm Password', 'required|min_length[5]|matches[client_password]');
+
+             if ($this->form_validation->run() == TRUE) {
+//                 echo 'form validated';
+
+                 $client_email = $_POST['client_email'];
+
+                 $this->db->select('*');
+                 $this->db->from('client');
+                 $this->db->where('client_email',$client_email);
+                 $query=$this->db->get();
+
+                 $user = $query->row();
+
+                 if (!$user) {
+                     $data = array(
+                         'client_name' => $_POST['client_name'],
+                         'client_email' => $_POST['client_email'],
+                         'client_mobile_num' => $_POST['client_mobile_num'],
+                         'client_dept' => $_POST['client_dept'],
+                         'client_org' => $_POST['client_org'],
+                         'client_password' => md5($_POST['client_cfm_password'])
                      );
                      $this->db->insert('admin', $data);
 
@@ -81,6 +128,6 @@
                  }
              }
          }
-         $this->load->view('admin/register');
+         $this->load->view('admin/createClient');
      }
  }

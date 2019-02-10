@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Review Status</title>
+    <title>Create new client account</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url('assets/ui_admin/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -100,7 +100,7 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivity')?>">
                 <i class="fas fa-th-list"></i>
                 <span>Review all requests</span></a>
         </li>
@@ -113,21 +113,27 @@
 
         <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/viewClient')?>">
-                <i class="fab fa-wpforms"></i>
+                <i class="fas fa-handshake"></i>
                 <span>View all clients</span></a>
         </li>
 
         <li class="nav-item active">
             <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/createClient')?>">
-                <i class="fab fa-wpforms"></i>
+                <i class="fas fa-handshake"></i>
                 <span>Create Clients</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivityCat')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>">
                 <i class="fab fa-wpforms"></i>
-                <span>Create New Category</span></a>
+                <span>Categories</span></a>
         </li>
+
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link" href="--><?php //echo base_url('index.php/AdminActivity/createActivityCat')?><!--">-->
+        <!--                <i class="fab fa-wpforms"></i>-->
+        <!--                <span>Create New Category</span></a>-->
+        <!--        </li>-->
     </ul>
 
     <div id="content-wrapper">
@@ -139,7 +145,7 @@
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Review Requests</li>
+                <li class="breadcrumb-item active">Create new client account</li>
             </ol>
 
             <!-- DataTables Example -->
@@ -149,6 +155,24 @@
                     Create new client ...
                 </div>
                 <div class="card-body">
+
+                    <?php if(isset($_SESSION['success'])) {?>
+                        <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
+                    <?php }?>
+                    <?php echo validation_errors('<div class="alert alert-danger">', '</div>');?>
+
+                    <?php
+                    $error_msg= $this->session->flashdata('error');
+
+                    if($error_msg){
+                        ?>
+                        <div class="alert alert-danger">
+                            <?php echo $error_msg; ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
                     <form method="post" action="" id="createForm" role="form">
 
                         <div class="form-group">
@@ -196,11 +220,7 @@
                         </div>
 
                         <div class = "modal-footer">
-                            <button type = "button" class = "btn btn-default" data-dismiss = "modal">
-                                Close
-                            </button>
-
-                            <button type="submit" id="btnSave" class = "btn btn-primary" name = "btnSave">
+                            <button type="submit" id="btnCreateClient" class = "btn btn-primary" name = "btnCreateClient">
                                 Create
                             </button>
                         </div>
@@ -281,48 +301,48 @@
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
 
 <script>
-    $(document).ready(function() {
-        $("#createForm").submit(function(e) {
-            // var actNameT = $("#activity_name_title").val();
-            // var actId = $("#activity_id").val();
-            // var actStatus = $("#activity_status").val();
-            var actName = $("#activity_name").val();
-            var actCat = $("#activity_category").val();
-            var actVenue = $("#activity_venue").val();
-            var actDate = $("#activity_date").val();
-            var actTime = $("#activity_time").val();
-            var actFees = $("#activity_fees").val();
-            var actMobileNum = $("#activity_mobile_num").val();
-            var actDesc = $("#activity_desc").val();
-            var url = "<?php echo site_url('index.php/AdminActivity/ajax_create') ?> ";
-
-            $('#btnSave').text('saving...'); //change button text
-            $('#btnSave').attr('disabled',true); //set button disable
-
-            $.ajax({
-                url : url,
-                method: "POST",
-                data: {activity_name: actName, activity_category: actCat, activity_venue: actVenue,
-                    activity_date: actDate, activity_time: actTime, activity_fees: actFees,
-                    activity_mobile_num: actMobileNum, activity_desc: actDesc},
-                success: function(data)
-                {
-                    alert("success");
-
-                    top.location.href="<?php echo base_url('index.php/AdminActivity')?>";
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert('Error adding / update data');
-                    $('#btnSave').text('Save changes'); //change button text
-                    $('#btnSave').attr('disabled',false); //set button enable
-
-                }
-            });
-        });
-    });
-
-
+    //$(document).ready(function() {
+    //    $("#createForm").submit(function(e) {
+    //        // var actNameT = $("#activity_name_title").val();
+    //        // var actId = $("#activity_id").val();
+    //        // var actStatus = $("#activity_status").val();
+    //        var actName = $("#activity_name").val();
+    //        var actCat = $("#activity_category").val();
+    //        var actVenue = $("#activity_venue").val();
+    //        var actDate = $("#activity_date").val();
+    //        var actTime = $("#activity_time").val();
+    //        var actFees = $("#activity_fees").val();
+    //        var actMobileNum = $("#activity_mobile_num").val();
+    //        var actDesc = $("#activity_desc").val();
+    //        var url = "<?php //echo site_url('index.php/AdminActivity/ajax_create') ?>// ";
+    //
+    //        $('#btnCreateClient').text('saving...'); //change button text
+    //        $('#btnCreateClient').attr('disabled',true); //set button disable
+    //
+    //        $.ajax({
+    //            url : url,
+    //            method: "POST",
+    //            data: {activity_name: actName, activity_category: actCat, activity_venue: actVenue,
+    //                activity_date: actDate, activity_time: actTime, activity_fees: actFees,
+    //                activity_mobile_num: actMobileNum, activity_desc: actDesc},
+    //            success: function(data)
+    //            {
+    //                alert("success");
+    //
+    //                top.location.href="<?php //echo base_url('index.php/AdminActivity')?>//";
+    //            },
+    //            error: function (jqXHR, textStatus, errorThrown)
+    //            {
+    //                alert('Error adding / update data');
+    //                $('#btnCreateClient').text('Save changes'); //change button text
+    //                $('#btnCreateClient').attr('disabled',false); //set button enable
+    //
+    //            }
+    //        });
+    //    });
+    //});
+    //
+    //
 </script>
 
 </body>

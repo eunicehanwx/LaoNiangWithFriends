@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Review Status</title>
+    <title>View Clients</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url('assets/ui_admin/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -100,7 +100,7 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity')?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivity')?>">
                 <i class="fas fa-th-list"></i>
                 <span>Review all requests</span></a>
         </li>
@@ -111,11 +111,29 @@
                 <span>Create New Activity</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link active" href="<?php echo base_url('index.php/AdminManageClient')?>">
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/viewClient')?>">
                 <i class="fas fa-handshake"></i>
                 <span>View all clients</span></a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminManageClient/createClient')?>">
+                <i class="fas fa-handshake"></i>
+                <span>Create Clients</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>">
+                <i class="fab fa-wpforms"></i>
+                <span>Categories</span></a>
+        </li>
+
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link" href="--><?php //echo base_url('index.php/AdminActivity/createActivityCat')?><!--">-->
+        <!--                <i class="fab fa-wpforms"></i>-->
+        <!--                <span>Create New Category</span></a>-->
+        <!--        </li>-->
     </ul>
 
     <div id="content-wrapper">
@@ -127,14 +145,14 @@
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Review Requests</li>
+                <li class="breadcrumb-item active">View all client account</li>
             </ol>
 
             <!-- DataTables Example -->
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Pending requests ...
+                    View All Clients
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -147,7 +165,6 @@
                                     <th>Client Mobile No.</th>
                                     <th>Client Department</th>
                                     <th>Client Organization</th>
-                                    <th>Client Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -161,14 +178,6 @@
                                         <td><?php echo $client->client_mobile_num; ?></td>
                                         <td><?php echo $client->client_dept; ?></td>
                                         <td><?php echo $client->client_org; ?></td>
-
-                                        <?php if (($client->client_status) == 'APPROVED') { ?>
-                                            <td bgcolor="#98fb98"><?php echo $client->client_status; ?></td>
-                                        <?php } else if (($client->client_status) == 'REJECTED') { ?>
-                                            <td bgcolor="#db7093"><?php echo $client->client_status; ?></td>
-                                        <?php } else { ?>
-                                            <td><?php echo $client->client_status; ?></td>
-                                        <?php } ?>
 
                                         <td>
                                             <!-- Button edit/review trigger modal -->
