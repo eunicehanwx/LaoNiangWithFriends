@@ -23,7 +23,6 @@
     <!-- Page level plugin CSS-->
     <link href="<?php echo base_url('assets/ui_admin/vendor/datatables/dataTables.bootstrap4.css');?>" rel="stylesheet">
 
-
 </head>
 
 <body id="page-top">
@@ -112,13 +111,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php base_url('index.php/AdminRecipe/viewRecipe') ?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminRecipe/viewRecipe') ?>">
                 <i class="fas fa-th-list"></i>
                 <span>Review all recipe request</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php base_url('index.php/AdminRecipe/createRecipe') ?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminRecipe/createRecipe') ?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Recipe</span></a>
         </li>
@@ -167,9 +166,17 @@
                     Create new activities ...
                 </div>
                 <div class="card-body">
-                    <form method="post" action="" id="createForm" role="form">
+                    <form method="post" action="" id="createForm" role="form" enctype="multipart/form-data" >
+<!--                        <form action="--><?php //echo base_url('index.php/recipeUpload/do_upload');?><!--" method="post" enctype="multipart/form-data">-->
 
-                        <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>
+
+                        <!--                        <p>*Insert Activity Photo Blob here*<span id="activity_image"></span></p>-->
+
+                        <div class="controls">
+                            <label>Upload Photo:</label>
+                            <input name="file" type="file"  id="image_file">
+                            <p class="help-block"></p>
+                        </div>
 
                         <div class="form-group">
                             <div class="form-label-group">
@@ -309,6 +316,7 @@
     </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url('assets/ui_admin/vendor/jquery/jquery.min.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
@@ -327,6 +335,7 @@
 <!-- Demo scripts for this page-->
 <script src="<?php echo base_url('assets/ui_admin/js/demo/datatables-demo.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
+
 
 <script>
     $(document).ready(function() {
@@ -348,11 +357,18 @@
             $('#btnSave').attr('disabled',true); //set button disable
 
             $.ajax({
+
+
                 url : url,
                 method: "POST",
-                data: {activity_name: actName, activity_category: actCat, activity_venue: actVenue,
-                    activity_date: actDate, activity_time: actTime, activity_fees: actFees,
-                    activity_mobile_num: actMobileNum, activity_desc: actDesc},
+                data: new FormData(this),
+                processData:false,
+                contentType:false,
+                cache:false,
+                async:false,
+                // data: {activity_name: actName, activity_category: actCat, activity_venue: actVenue,
+                //     activity_date: actDate, activity_time: actTime, activity_fees: actFees,
+                //     activity_mobile_num: actMobileNum, activity_desc: actDesc},
                 success: function(data)
                 {
                     alert("success");
