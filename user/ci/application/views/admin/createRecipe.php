@@ -105,20 +105,20 @@
                 <span>Review all activity requests</span></a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/AdminActivity/createActivity')?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Activity</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php ?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminRecipe/viewRecipe') ?>">
                 <i class="fas fa-th-list"></i>
                 <span>Review all recipe request</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="<?php ?>">
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminRecipe/createRecipe') ?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Recipe</span></a>
         </li>
@@ -164,13 +164,10 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Create new activities ...
+                    Create new recipes ...
                 </div>
                 <div class="card-body">
                     <form method="post" action="" id="createForm" role="form">
-
-                        <p>*Insert Recipe Photo Blob here*<span id="activity_image"></span></p>
-
                         <div class="form-group">
                             <div class="form-label-group">
                                 <input type="text" name="recipe_name" id="recipe_name" class="form-control" placeholder="Recipe name" required="required" autofocus="autofocus">
@@ -188,58 +185,30 @@
                             <div class="form-label-group">
                                 <!--                                                    <input type="option" name="activity_status" id="activity_status" class="form-control" placeholder="Activity status" required="required">-->
                                 <!--                                                    <label for="activity_status">Status</label>-->
-                                <select name="recipe_category" id="recipe_category" class="form-control" placeholder="Recipe category">
-                                    <!--                                                        <option value=""></option>-->
-<!--                                    <option value="REJECTED">REJECT</option>-->
-<!--                                    <option value="APPROVED">APPROVE</option>-->
-
+                                <select name="recipe_cuisine" id="recipe_cuisine" class="form-control" placeholder="Recipe cuisine">
                                     <option value="">Select Cuisine</option>
-                                    <?php foreach($categories as $category) { ?>
+                                    <?php foreach($cuisines as $cuisine) { ?>
 
-                                        <option value="<?php echo $category->category_name; ?>"><?php echo $category->category_name; ?></option>
+                                        <option value="<?php echo $cuisine->cuisine_name; ?>"><?php echo $cuisine->cuisine_name; ?></option>
 
                                     <?php } ?>
                                 </select>
-
-
-
                             </div>
                         </div>
 
+                        <p>*Insert Recipe Photo Blob here*<span id="activity_image"></span></p>
+
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="text" name="activity_venue" id="activity_venue" class="form-control" placeholder="Activity venue" required="required">
-                                <label for="activity_venue">Venue</label>
+                                <input type="text" name="recipe_step" id="recipe_step" class="form-control" placeholder="Recipe steps" required="required">
+                                <label for="recipe_step">Steps</label>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="date" name="activity_date" id="activity_date" class="form-control" placeholder="Activity date" required="required">
-                                <label for="activity_date">Date</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="time" name="activity_time" id="activity_time" class="form-control" placeholder="Activity time" required="required">
-                                <label for="activity_time">Time</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" name="activity_fees" id="activity_fees" class="form-control" placeholder="Activity fees" required="required">
-                                <label for="activity_fees">Fees ($)</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" name="activity_mobile_num" id="activity_mobile_num" class="form-control" placeholder="Activity contact number" required="required">
-                                <label for="activity_mobile_num">Contact Number</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" name="activity_desc" id="activity_desc" class="form-control" placeholder="Activity description" required="required">
-                                <label for="activity_desc">Description of Activity</label>
+                                <input type="text" name="recipe_ingredient" id="recipe_ingredient" class="form-control" placeholder="Recipe ingredient" required="required">
+                                <label for="recipe_ingredient">Ingredients</label>
                             </div>
                         </div>
 

@@ -313,6 +313,7 @@
                             <!--                                                        <option value=""></option>-->
                             <option value="REJECTED">REJECT</option>
                             <option value="APPROVED">APPROVE</option>
+                            <option value="pending">pending</option>
                         </select>
 
                     </div>
@@ -407,6 +408,7 @@
 <!--                                <option value="pending">pending</option>-->
                                 <option value="REJECTED">REJECT</option>
                                 <option value="APPROVED">APPROVE</option>
+                                <option value="pending">pending</option>
                             </select>
 
                         </div>
@@ -633,6 +635,12 @@
 
         });
     }
+
+    // function id() {
+    //     var activity_id = button.id;
+    //     onclick confirm
+    //         deleteDetails((activity_id));
+    // }
 
     function deleteDetails(button) {
 

@@ -112,13 +112,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php base_url('index.php/AdminRecipe/viewRecipe') ?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminRecipe/viewRecipe') ?>">
                 <i class="fas fa-th-list"></i>
                 <span>Review all recipe request</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php base_url('index.php/AdminRecipe/createRecipe') ?>">
+            <a class="nav-link" href="<?php echo base_url('index.php/AdminRecipe/createRecipe') ?>">
                 <i class="fab fa-wpforms"></i>
                 <span>Create New Recipe</span></a>
         </li>

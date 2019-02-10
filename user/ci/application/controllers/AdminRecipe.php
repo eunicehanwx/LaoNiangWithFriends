@@ -54,7 +54,7 @@
 
      public function ajax_edit($id)
      {
-         $data = $this->Adminmodel->get_by_id($id, 'activity', 'activity_id');
+         $data = $this->Adminmodel->get_by_id($id, 'recipe', 'recipe_id');
 //        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
 
          echo json_encode($data);
@@ -62,7 +62,7 @@
 
      public function ajax_delete($id)
      {
-          $this->Adminmodel->delete($id, 'activity', 'activity_id');
+          $this->Adminmodel->delete($id, 'recipe', 'recipe_id');
      }
 
      public function ajax_create ()
@@ -86,7 +86,7 @@
      public function ajax_update()
      {
 //         $this->_validate();
-         $activity_id = $this->input->post('activity_id');
+         $recipe_id = $this->input->post('recipe_id');
 
          $config['upload_path'] = "./assets/uploaded_image";
          $config['allowed_types']='gif|jpg|png';
@@ -96,18 +96,25 @@
          }
 
          $data = array(
-             'activity_name' => $this->input->post('activity_name'),
-             'activity_category' => $this->input->post('activity_category'),
-             'activity_venue' => $this->input->post('activity_venue'),
-             'activity_time' => $this->input->post('activity_time'),
-             'activity_date' => $this->input->post('activity_date'),
-             'activity_desc' => $this->input->post('activity_desc'),
-             'activity_fees' => $this->input->post('activity_fees'),
-             'activity_mobile_num' => $this->input->post('activity_mobile_num'),
-             'activity_image' =>  $data['upload_data']['file_name'],
-             'activity_status' => $this->input->post('activity_status'),
+             'recipe_name' => $this->input->post('recipe_name'),
+             'recipe_cuisine' => $this->input->post('recipe_cuisine'),
+//             'activity_image' =>  $data['upload_data']['file_name'],
+             'recipe_step' => $this->input->post('recipe_step'),
+             'recipe_ingredient' => $this->input->post('recipe_ingredient'),
+             'recipe_status' => $this->input->post('recipe_status'),
          );
-         $this->Adminmodel->update($activity_id, $data, 'activity', 'activity_id');
+         $this->Adminmodel->update($recipe_id, $data, 'recipe', 'recipe_id');
+     }
+
+     public function ajax_update_delete($id)
+     {
+//         $this->_validate();
+//         $recipe_id = $this->input->post('recipe_id');
+
+         $data = array(
+             'recipe_status' => "DELETED",
+         );
+         $this->Adminmodel->update($id, $data, 'recipe', 'recipe_id');
      }
  }
 /* End of file AdminController.php */
