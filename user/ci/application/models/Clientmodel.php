@@ -132,5 +132,14 @@ class Clientmodel extends CI_Model{
         $this->db->update('recipe',$data);
     }
 
+    public function activity_delete($where)
+    {
+        $data = array(
+            'activity_status' => "deleted"
+        );
+        $this->db->where('activity_id', $where);
+        $this->db->update('activity',$data);
+    }
+
 }
 

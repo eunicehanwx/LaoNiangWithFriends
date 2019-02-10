@@ -19,6 +19,7 @@ class cusinies_mdl extends CI_Model{
         $this->db->select('recipe_step');
         $this->db->select('recipe_status');
         $this->db->select('recipe_ingredient');
+        $this->db->like('recipe_status', 'APPROVED');
         $this->db->where('recipe_cuisine',$typeofcuisine);
 //        $this->db->where('activity_status', 'pending');
         $query = $this->db->get('recipe'); // put in the table name

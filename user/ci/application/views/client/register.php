@@ -164,10 +164,10 @@
                         <input type="text" name="venue" class="form-control" placeholder="Venue">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="date" class="form-control" placeholder="Date">
+                        <input type="date" name="date" class="form-control" placeholder="Date">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="time" class="form-control" placeholder="Time">
+                        <input type="time" name="time" class="form-control" placeholder="Time">
                     </div>
                     <div class="form-group">
                         <input type="text" name="desc" class="form-control" placeholder="Description">

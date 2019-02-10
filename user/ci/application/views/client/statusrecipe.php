@@ -192,7 +192,9 @@
 <!--                                                <span></span>-->
 <!--                                            </button>-->
                                             <!-- Button remove trigger modal -->
-                                            <button id=" <?php echo $recipe->recipe_id; ?> " onclick='deleteDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">
+<!--                                            <button id=" --><?php //echo $recipe->recipe_id; ?><!-- " onclick='deleteDetails(this);' class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">-->
+                                                <button id="<?php echo $recipe->recipe_id; ?>" onclick="passid(this)" class = "btn btn-primary" data-toggle = "modal" data-target = "#deleteModal">
+
                                                 <i class="far fa-trash-alt"></i>
                                                 <span></span>
                                             </button>
@@ -202,7 +204,18 @@
 
                             </tbody>
                         </table>
-
+                        <script>
+                            function passid(button) {
+                                var activity_id = button.id;
+                                //AJAX call to get activity_id details
+                                $.ajax({
+                                    success: function(response) {
+                                        // alert(response);
+                                        $("#receive_id").attr("id", activity_id);
+                                    }
+                                });
+                            }
+                        </script>
 
                     </div>
                 </div>
@@ -254,8 +267,9 @@
             </div>
             <div class="modal-body">Once deleted, unable to undo.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="">Confirm</a>
+<!--                <label style="visibility: hidden;" id="receive_id"></label>-->
+                <button class="btn btn-secondary"  type="button" data-dismiss="modal">Cancel</button>
+                <a id="receive_id" onclick='deleteDetails(this);' class="btn btn-primary" href="">Confirm</a>
             </div>
         </div>
     </div>
@@ -605,8 +619,11 @@
             // dataType: "JSON",
             success: function(data) {
                 //if success reload ajax table
-                $('#deleteModal').modal('hide');
-                table.ajax.reload(null,false);
+
+                if(data.status) {
+                    $('#deleteModal').modal('hide');
+                    table.ajax.reload(null, false);
+                }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

@@ -37,7 +37,7 @@ class Upload extends CI_Controller{
                 $date= $this->input->post('date');
                 $time= $this->input->post('time');
                 $desc= $this->input->post('desc');
-                $fee= $this->input->post('fee');
+                $fee= $this->input->post('fees');
                 $mobileno= $this->input->post('mobileno');
                 $c_id = $_SESSION['client_id'];
                 $this->upload_model->upload_image($title,$image,$category,$venue,$date,$time,$desc,$fee,$mobileno, "pending",$c_id);
