@@ -54,6 +54,8 @@ class cusinies_mdl extends CI_Model{
             $list[$i]->recipestep = $result[$i]->recipe_step;
             $list[$i]->recipestatus = $result[$i]->recipe_status;
             $list[$i]->recipeingredient = $result[$i]->recipe_ingredient;
+            $list[$i]->recipegood = $result[$i]->goodreview;
+            $list[$i]->recipebad = $result[$i]->badreview;
         }
         return $list;
     }

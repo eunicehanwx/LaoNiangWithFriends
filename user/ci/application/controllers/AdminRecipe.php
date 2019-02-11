@@ -38,7 +38,6 @@
          $this->load->helper('url');
          $data['recipes'] = $this->Adminmodel->get_recipe_list();
          $this->load->view('admin/viewRecipe', $data);
-
      }
 
      public function createRecipe()

@@ -24,6 +24,8 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url('assets/ui_user/css/freelancer.min.css'); ?>" rel="stylesheet">
 
+    <link rel="stylesheet" href="<?php echo base_url('assets/ui_user/animate.min.css'); ?>">
+
   </head>
 
   <body id="page-top">
@@ -85,7 +87,7 @@
                                     <i class="fas fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $cuisine->recipeimage ?>" />
+                            <img width="350" height="240" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $cuisine->recipeimage ?>" />
                         </a>
                         <h4 class="text-center mb-5"><?php echo $cuisine->recipename ?></h4>
                     </div>
@@ -113,6 +115,10 @@
                                 $("#recipe_status").text(recipe[0].recipestatus);
                                 $("#recipe_ingredient").text(recipe[0].recipeingredient);
                                 $("#recipe_img").attr("src", '<?php echo base_url() ?>assets/uploaded_image/'+recipe[0].recipeimage);
+                                $("#receive_id1").attr("id", button.id);
+                                $("#receive_id2").attr("id", button.id);
+                                $("#badreview").text(parseInt(recipe[0].recipebad));
+                                $("#goodreview").text(parseInt(recipe[0].recipegood));
                             }
                         });
                     }
@@ -168,6 +174,49 @@
                         <span id="recipe_name_title"></span>
                         <hr class="star-dark mb-5">
                     </div>
+
+                    <div class="col-lg-8 mx-auto">
+                        <label id="badreview"></label>
+                        <button id="receive_id1" class="btn btn-primary mx-4" onclick="downreview(this)">
+                            <picture class="fas fa-dizzy"></picture>
+                            <span></span>
+                        </button>
+                        <button id="receive_id2" class="btn btn-primary mx-4" onclick="upreview(this)">
+                            <picture class="fas fa-smile"></picture>
+                            <span></span>
+                        </button>
+                        <label id="goodreview"></label>
+                        <br/>
+                        <br/>
+                        <script>
+                            function upreview(button) {
+                                var activity_id = button.id;
+                                var goodreview = parseInt($("#goodreview").text()) +1;
+                                // alert(activity_id);
+                                //AJAX call to get activity_id details
+                                $.ajax({
+                                    success: function(response) {
+                                        // alert(response);
+                                        $("#goodreview").text(goodreview);
+                                    }
+                                });
+                            }
+                            function downreview(button) {
+                                var activity_id = button.id;
+                                var badreview = parseInt($("#badreview").val()) +1;
+                                // alert(activity_id);
+                                //AJAX call to get activity_id details
+                                $.ajax({
+                                    success: function(response) {
+                                        // alert(response);
+                                        $("#badreview").text(badreview);
+                                    }
+                                });
+                            }
+                        </script>
+
+                    </div>
+
                     <div class="col-lg-5 mx-auto">
                         <img id="recipe_img" class="img-fluid mb-5" src="" alt="">
                     </div>
@@ -183,7 +232,6 @@
                         <textarea readonly style="width:500px; height: 300px; border: none;" id="recipe_ingredient" class="mb-6" ></textarea>
 <!--                        <p class="mb-6"><span id="recipe_ingredient"></span></p>-->
                     </div>
-
                     <div class="col-lg-12 mx-auto">
                         <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                             <i class="fa fa-close"></i>

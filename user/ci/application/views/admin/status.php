@@ -205,6 +205,13 @@
                                                 <i class="far fa-trash-alt"></i>
                                                 <span></span>
                                             </button>
+
+                                            <button id=" <?php echo $activity->activity_id; ?> " onclick='showUser(this)' class = "btn btn-primary" data-toggle = "modal" data-target = "#viewUser">
+                                                <i class="fas fa-people-carry"></i>
+                                                <span></span>
+                                            </button>
+\
+
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -486,6 +493,37 @@
 
 </div><!-- /.modal -->
 
+<!-- View User -->
+<div class="modal fade" id="viewUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class = "modal-title" id = "myModalLabel">
+                    <!--This Modal title-->
+                    <span id="activity_name_title_v"></span>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-bordered" name="userTable" id="userTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <label id="user_name">Nothing</label>
+                    <table class="table table-hover table-bordered" id="userdataTable" name="userdataTable"></table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url('assets/ui_admin/vendor/jquery/jquery.min.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
@@ -665,6 +703,34 @@
             error: function (jqXHR, textStatus, errorThrown)
             {
                 alert('Error deleting data');
+            }
+
+        });
+    }
+
+    function showUser(button) {
+
+        var activity_id = button.id;
+        activity_id = activity_id.replace(/\s+/g, '');
+
+        alert(activity_id);
+        //AJAX call to get activity_id details
+        $.ajax({
+            url: "<?php echo site_url('index.php/ClientStatus/user_ajax_get/')?>/" + activity_id,
+            method: "GET",
+            // dataType: "JSON",
+            success: function(data) {
+                // alert(data);
+                var data = JSON.parse(data);
+                // alert(data.activity_name);
+                $("#user_name").text('Total registered user: ' + data.length);
+                var result = '';
+                for (var i = 0; i < data.length; i++) {
+                    result += '<tr><td>' + data[i].user_name + '</td><td>' + data[i].user_mobile_num + '</td></tr>';
+                }
+                ;
+                $('#userdataTable').empty();
+                $('#userdataTable').append(result);
             }
 
         });

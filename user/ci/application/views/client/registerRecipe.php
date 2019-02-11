@@ -137,14 +137,14 @@
 
                     <div class="form-group">
                         <label for="exampleInputFile"></label>
-                        <input type="file" class="dropify" name="filefoto" data-height="300">
+                        <input type="file" class="dropify" name="filefoto" data-height="300" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="title" class="form-control" placeholder="Name">
+                        <input type="text" name="title" class="form-control" placeholder="Name" required>
                     </div>
                     <div class="form-group">
                         <!--                        <input type="text" name="category" class="form-control" placeholder="Category">-->
-                        <select name="category" class="form-control" placeholder="Category">
+                        <select name="category" class="form-control" placeholder="Category" required>
 
                             <option value="">Select Cuisine</option>
 
@@ -205,7 +205,7 @@
 
 <!--<script type="text/javascript" src="--><?php //echo base_url('resources/js/jquery-3.2.1.js');?><!--"></script>-->
 <!--<script type="text/javascript" src="--><?php //echo base_url('resources/js/bootstrap.js');?><!--"></script>-->
-<!--<script type="text/javascript" src="--><?php //echo base_url('resources/dropify/js/dropify.js');?><!--"></script>-->
+<script type="text/javascript" src="<?php echo base_url('resources/dropify/js/dropify.js');?>"></script>
 
 
 <script type="text/javascript">

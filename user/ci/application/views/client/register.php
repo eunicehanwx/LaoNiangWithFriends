@@ -145,7 +145,7 @@
                     </div>
                     <div class="form-group">
 <!--                        <input type="text" name="category" class="form-control" placeholder="Category">-->
-                        <select name="category" class="form-control" placeholder="Category">
+                        <select name="category" class="form-control" placeholder="Category" required>
 
                             <option value="">Select Category</option>
 
@@ -158,22 +158,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="fees" class="form-control" placeholder="Fees">
+                        <input type="text" name="fees" class="form-control" placeholder="Fees" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="venue" class="form-control" placeholder="Venue">
+                        <input type="text" name="venue" class="form-control" placeholder="Venue" required>
                     </div>
                     <div class="form-group">
-                        <input type="date" name="date" class="form-control" placeholder="Date">
+                        <input type="date" name="date" class="form-control" placeholder="Date" required>
                     </div>
                     <div class="form-group">
-                        <input type="time" name="time" class="form-control" placeholder="Time">
+                        <input type="time" name="time" class="form-control" placeholder="Time" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="desc" class="form-control" placeholder="Description">
+                        <input type="text" name="desc" class="form-control" placeholder="Description" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="mobileno" class="form-control" placeholder="Contact Number">
+                        <input type="text" name="mobileno" class="form-control" placeholder="Contact Number" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Upload</button>
                 </form>
