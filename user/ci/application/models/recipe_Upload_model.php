@@ -15,6 +15,8 @@ class recipe_Upload_model extends CI_Model{
             'recipe_step' 	=> $step,
             'recipe_ingredient' 	=> $ingredient,
             'recipe_status' => 'Pending',
+            'badreview' => 0,
+            'goodreview' => 0,
         );
 		$result=$this->db->insert('recipe',$data);
 		return $result;

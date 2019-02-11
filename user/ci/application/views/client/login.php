@@ -38,7 +38,6 @@
 
 <div class="container">
     <div class="card card-login mx-auto mt-5">
-        <h1>CLIENT LOGIN PAGE</h1>
         <img src="<?php echo base_url('assets/ui_admin/lib/LNWF_logo2.png');?>" class="center"/>
         <!--<div class="card-header">Login</div>-->
         <div class="card-body">

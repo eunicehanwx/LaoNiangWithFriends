@@ -59,5 +59,17 @@ class cusinies_mdl extends CI_Model{
         }
         return $list;
     }
+
+    function upreviews($data,$id)
+    {
+        $this->db->where('recipe_id', $id);
+        $this->db->update('recipe',$data);
+    }
+
+    function downreviews($data,$id)
+    {
+        $this->db->where('recipe_id', $id);
+        $this->db->update('recipe',$data);
+    }
 }
 ?>

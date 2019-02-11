@@ -31,7 +31,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-dark fixed-top text-uppercase" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Lao Niang With Friends</a>
+        <a class="navbar-brand js-scroll-trigger" href="<?php echo base_url(). "index.php/blog/index/"; ?>">Lao Niang With Friends</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -143,6 +143,7 @@
                                     $("#activity_date").text(activity[0].activitydate);
                                     $("#activity_desc").text(activity[0].activitydesc);
                                     $("#activity_fees").text(activity[0].activitfees);
+                                    $("#activity_image").attr("src","<?php echo base_url() ?>assets/uploaded_image/"+activity[0].activityimage);
                                 }
 
                             });
@@ -198,7 +199,7 @@
                         <h2 class="text-secondary text-uppercase mb-0"><span id="activity_name_title"></span></h2>
                         <span id="activity_name_title"></span>
                         <hr class="star-dark mb-5">
-                        <img class="img-fluid mb-5" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $article->activityimage ?>" alt="">
+                        <img class="img-fluid mb-5" src="" id="activity_image" alt="">
                         <h4 class="text-uppercase mb-4"><span id="activity_venue"></span></h4>
                         <h4 class="text-uppercase mb-4"><span id="activity_date"></span>&nbsp;<span id="activity_time"></span></h4>
                         <h4 class="text-uppercase mb-4">Price:&nbsp;$<span id="activity_fees"></span> Per Pax</h4>

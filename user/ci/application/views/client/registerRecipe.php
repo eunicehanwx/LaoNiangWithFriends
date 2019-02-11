@@ -144,7 +144,7 @@
                     </div>
                     <div class="form-group">
                         <!--                        <input type="text" name="category" class="form-control" placeholder="Category">-->
-                        <select name="category" class="form-control" placeholder="Category" required>
+                        <select name="cuisine" class="form-control" placeholder="Category" required>
 
                             <option value="">Select Cuisine</option>
 
@@ -157,10 +157,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea type="text" rows="10" cols="30" name="ingredient" class="form-control" placeholder="Ingredient" required="required">Recipe Ingredient</textarea>
+                        <textarea type="text" rows="10" cols="30" name="ingredient" class="form-control" placeholder="Ingredient" required="required"></textarea>
                     </div>
                     <div class="form-group">
-                        <textarea type="text" rows="10" cols="30" name="step" class="form-control" placeholder="Step" required="required">Recipe Ingredient</textarea>
+                        <textarea type="text" rows="10" cols="30" name="step" class="form-control" placeholder="Step" required="required"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Upload</button>
                 </form>
@@ -203,8 +203,8 @@
 <script src="<?php echo base_url('assets/ui_admin/js/demo/datatables-demo.js');?>"></script>
 <script src="<?php echo base_url('assets/ui_admin/js/demo/chart-area-demo.js');?>"></script>
 
-<!--<script type="text/javascript" src="--><?php //echo base_url('resources/js/jquery-3.2.1.js');?><!--"></script>-->
-<!--<script type="text/javascript" src="--><?php //echo base_url('resources/js/bootstrap.js');?><!--"></script>-->
+<script type="text/javascript" src="<?php echo base_url('resources/js/jquery-3.2.1.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('resources/js/bootstrap.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('resources/dropify/js/dropify.js');?>"></script>
 
 

@@ -54,6 +54,26 @@
 //            return $arrayData;
         }
 
+        public function upreview()
+        {
+            $id = $this->input-> post('recipe_id');
+            $data = array(
+                'goodreview' => $this->input-> post('goodreview'),
+            );
+            $this->load->model('cusinies_mdl');
+            $this->cusinies_mdl->upreviews($data,$id);
+        }
+
+        public function downreview()
+        {
+            $id = $this->input-> post('recipe_id');
+            $data = array(
+                'badreview' => $this->input-> post('badreview'),
+            );
+            $this->load->model('cusinies_mdl');
+            $this->cusinies_mdl->downreviews($data,$id);
+        }
+
     }
 /* End of file Blog.php */
 /* Location: ./application/controllers/blog.php */

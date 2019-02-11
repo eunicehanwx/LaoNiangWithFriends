@@ -24,8 +24,6 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url('assets/ui_user/css/freelancer.min.css'); ?>" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/ui_user/animate.min.css'); ?>">
-
   </head>
 
   <body id="page-top">
@@ -33,7 +31,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-dark fixed-top text-uppercase" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Lao Niang With Friends</a>
+          <a class="navbar-brand js-scroll-trigger" href="<?php echo base_url(). "index.php/blog/index/"; ?>">Lao Niang With Friends</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -195,18 +193,26 @@
                                 // alert(activity_id);
                                 //AJAX call to get activity_id details
                                 $.ajax({
+                                    url : "<?=base_url()?>index.php/Cuisines/upreview",
+                                    method: "POST",
+                                    data: {goodreview: goodreview, recipe_id: activity_id},
                                     success: function(response) {
                                         // alert(response);
                                         $("#goodreview").text(goodreview);
                                     }
                                 });
                             }
+                        </script>
+                        <script>
                             function downreview(button) {
                                 var activity_id = button.id;
-                                var badreview = parseInt($("#badreview").val()) +1;
+                                var badreview = parseInt($("#badreview").text()) -1;
                                 // alert(activity_id);
                                 //AJAX call to get activity_id details
                                 $.ajax({
+                                        url : "<?=base_url()?>index.php/Cuisines/downreview",
+                                        method: "POST",
+                                        data: {badreview: badreview, recipe_id: activity_id},
                                     success: function(response) {
                                         // alert(response);
                                         $("#badreview").text(badreview);

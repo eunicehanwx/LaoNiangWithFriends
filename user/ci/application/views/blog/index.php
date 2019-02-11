@@ -31,7 +31,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-dark fixed-top text-uppercase" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Lao Niang With Friends</a>
+          <a class="navbar-brand js-scroll-trigger" href="<?php echo base_url(). "index.php/blog/index/"; ?>"><?php echo $message; ?></a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -39,13 +39,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a  href="#about" >About</a>
+              <a  href="#about" ><?php echo $about; ?></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-               <a  href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">Activity</a>
+               <a  href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>"><?php echo $activity; ?></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a  href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">Recipe</a>
+              <a  href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>"><?php echo $recipe; ?></a>
             </li>
           </ul>
         </div>
@@ -55,13 +55,20 @@
     <!-- Header -->
     <div class="row">
         <div class ="col-lg-12">
+            <
             <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/Banner_02.png');?>" alt="">
         </div>
     </div>
       <div class="container text-center">
-        <h1 class="text-uppercase mb-0">Lao Niang With Friends</h1>
+          <button style="height: 50px; width: 100px; font-size: x-large; color: black;"><?php echo anchor('index.php/Blog/index/english', 'English');?></button>
+          <button style="height: 50px; width: 100px; font-size: x-large; color: black;"><?php echo anchor('index.php/Blog/index/simplified-chinese', '中文'); ?></button>
+          <button style="height: 50px; width: 100px; font-size: x-large; color: black;"><?php echo anchor('index.php/Blog/index/tamil', 'Tamil'); ?> </button>
+          <button style="height: 50px; width: 100px; font-size: x-large; color: black;"><?php echo anchor('index.php/Blog/index/malay', 'Malay'); ?> </button>
+          <br/>
+          <br/>
+        <h1 class="text-uppercase mb-0"><?php echo $message; ?></h1>
         <hr class="star-dark">
-        <h2 class="font-weight-light mb-0">Together, we can improve the life experience for the elderly!</h2>
+        <h2 class="font-weight-light mb-0"><?php echo $welcome_massage; ?></h2>
       </div>
 
     <section class="portfolio" id="portfolio">
@@ -76,7 +83,7 @@
                         </div>
                         <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/Recipe_10.png'); ?>" alt="">
                     </a>
-                    <h2 class="text-center mb-5">Recipe</h2>
+                    <h2 class="text-center mb-5"><?php echo $recipe; ?></h2>
                 </div>
                 <div class="col-md-6 col-lg-6">
                     <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
@@ -88,7 +95,7 @@
                         <img class="img-fluid" src="<?php echo base_url('assets/ui_user/img/portfolio/Activity_10.png');?>" alt="">
 
                     </a>
-                    <h2 class="text-center mb-5">Activity</h2>
+                    <h2 class="text-center mb-5"><?php echo $activity; ?></h2>
                 </div>
             </div>
         </div>
@@ -100,13 +107,13 @@
     <!-- About Section -->
     <section class="alert-dark text-dark mb-0" id="about">
       <div class="container">
-        <h2 class="text-center text-uppercase text-dark mb-5">About</h2>
+        <h2 class="text-center text-uppercase text-dark mb-5"><?php echo $about; ?></h2>
         <div class="row">
           <div class="col-lg-4 ml-auto">
-            <p class="lead">Lao Niang with Friends is a platform for You to look for nearby activities that you can sign up easily with your beloved ones!</p>
+            <p class="lead"><?php echo $about1; ?></p>
           </div>
           <div class="col-lg-4 mr-auto">
-            <p class="lead">Not only that, you can also search for recipes that you wish to learn! There are up to 100 recipes that you can learn for different cuisines. </p>
+            <p class="lead"><?php echo $about2; ?></p>
           </div>
         </div>
       </div>

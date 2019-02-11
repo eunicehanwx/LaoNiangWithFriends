@@ -83,6 +83,8 @@
              'recipe_step' => $this->input->post('recipe_step'),
              'recipe_ingredient' => $this->input->post('recipe_ingredient'),
              'recipe_status' => "pending",
+             'badreview' => 0,
+             'goodreview' => 0,
          );
          $this->Adminmodel->create($data, 'recipe');
      }

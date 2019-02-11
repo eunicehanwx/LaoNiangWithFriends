@@ -90,5 +90,6 @@ class Blogmodel extends CI_Model{
         }
         return $list;
     }
+
 }
 ?>

@@ -19,11 +19,12 @@
         {
             parent::__construct();
             $this->load->database();
-
         }
 
-        public function index()
+        public function index($lang ='')
         {
+            $this->lang->load('calendar',$lang=='' ? 'english': $lang);
+
             $filter = $this->input->post('filter');
             $field = $this->input->post('field');
 
@@ -37,7 +38,16 @@
 
             $arrayData = array(
                 "articles" => $articles,
-                "dropdownvenue" => $this->Blogmodel->get_distinct_venue_list()
+                "dropdownvenue" => $this->Blogmodel->get_distinct_venue_list(),
+                'message' => $this->lang->line('Laoniang'),
+                'activity' => $this->lang->line('activity'),
+                'about' => $this->lang->line('about'),
+                'recipe' => $this->lang->line('recipe'),
+                'welcome_massage' => $this->lang->line('welcome_massage'),
+                'about1' => $this->lang->line('about1'),
+                'about2' => $this->lang->line('about2'),
+
+
             );
 
             $this->load->helper('url');

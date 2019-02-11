@@ -36,7 +36,7 @@ class recipeUpload extends CI_Controller{
                 $ingredient = $this->input->post('ingredient');
                 $user_data = $_SESSION['client_id'];
                 $this->recipe_upload_model->upload_image($user_data,$title,$image,$cuisine,$step,$ingredient);
-				echo "Upload Successful";
+                echo "Upload Successful";
                 redirect("index.php/recipeUpload/add_new");
 
 			}else{
