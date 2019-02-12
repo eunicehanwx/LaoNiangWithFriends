@@ -376,8 +376,6 @@
                 //     activity_mobile_num: actMobileNum, activity_desc: actDesc},
                 success: function(data)
                 {
-                    alert("success");
-
                     top.location.href="<?php echo base_url('index.php/AdminActivity')?>";
                 },
                 error: function (jqXHR, textStatus, errorThrown)

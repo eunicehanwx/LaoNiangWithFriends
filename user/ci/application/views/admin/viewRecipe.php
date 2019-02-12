@@ -265,6 +265,26 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+<!-- Successful Modal-->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+<!--                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>-->
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Successful! </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+<!--                <a class="btn btn-primary" href="" id="deleteId" name="deleteId" onclick="deleteDetails()">Confirm</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Delete Modal-->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -497,8 +517,9 @@
                 //     activity_desc: actDesc, activity_status: actStatus},
                 success: function(data)
                 {
-                    alert("success");
+                    // alert("success");
                     $('#editModal').modal('hide');
+                    $('#successModal').modal('show');
 
                     $('#btnSave').text('Save changes'); //change button text
                     $('#btnSave').attr('disabled',false); //set button enable
@@ -530,18 +551,6 @@
             success: function(data) {
                 // alert(data);
                 var data = JSON.parse(data);
-
-                // $("#activity_name_title").text(activity.activity_name);
-                // $("#activity_name").text(activity.activity_name);
-                // $("#activity_category").text(activity.activity_category);
-                // $("#activity_venue").text(activity.activity_venue);
-                // $("#activity_date").text(activity.activity_date);
-                // $("#activity_time").text(activity.activity_time);
-                // $("#activity_fees").text(activity.activity_fees);
-                // $("#activity_mobile_num").text(activity.activity_mobile_num);
-                // $("#activity_desc").text(activity.activity_desc);
-
-
 
                 // alert(data.activity_name);
                 $("#recipe_id").val(data.recipe_id);
@@ -596,7 +605,7 @@
         $.ajax({
             success: function(response) {
                 // alert(response);
-                alert("success");
+                // alert("success");
                 $( "#deleteId" ).click(function() {
                     deleteDetails(recipe_id);
                 });

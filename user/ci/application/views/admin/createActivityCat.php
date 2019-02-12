@@ -288,8 +288,6 @@
                 data: {category_name: catName},
                 success: function(data)
                 {
-                    alert("success");
-
                     top.location.href="<?php echo base_url('index.php/AdminActivity/viewActivityCat')?>";
                 },
                 error: function (jqXHR, textStatus, errorThrown)

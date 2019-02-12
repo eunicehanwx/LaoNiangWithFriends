@@ -333,8 +333,7 @@
                 //     activity_mobile_num: actMobileNum, activity_desc: actDesc},
                 success: function(data)
                 {
-                    alert("success");
-
+                    alert('Successfully created!!');
                     top.location.href="<?php echo base_url('index.php/AdminRecipe/viewRecipe')?>";
                 },
                 error: function (jqXHR, textStatus, errorThrown)

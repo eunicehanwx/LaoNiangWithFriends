@@ -467,9 +467,11 @@
                 data: {category_name: catName, category_id: catId},
                 success: function(data)
                 {
-                    alert("success");
+
                     $('#editModal').modal('hide');
 
+                    alert("success");
+                    
                     $('#btnSave').text('Save changes'); //change button text
                     $('#btnSave').attr('disabled',false); //set button enable
 

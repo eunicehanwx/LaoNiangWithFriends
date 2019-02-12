@@ -276,6 +276,26 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+<!-- Successful Modal-->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>-->
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Successful! </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+                <!--                <a class="btn btn-primary" href="" id="deleteId" name="deleteId" onclick="deleteDetails()">Confirm</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Delete Modal-->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -597,13 +617,16 @@
                 //     activity_desc: actDesc, activity_status: actStatus},
                 success: function(data)
                 {
-                    alert("success");
                     $('#editModal').modal('hide');
 
                     $('#btnSave').text('Save changes'); //change button text
                     $('#btnSave').attr('disabled',false); //set button enable
 
+                    alert("success");
+
                     table.ajax.reload(null,false); //reload datatable ajax
+                    // $('#successModal').modal('show');
+
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
@@ -621,7 +644,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminActivity/ajax_edit/')?>/" + activity_id,
@@ -666,7 +689,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminActivity/ajax_edit/')?>/" + activity_id,
@@ -706,7 +729,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminActivity/activity_ajax_delete/')?>/" + activity_id,
@@ -733,7 +756,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/ClientStatus/user_ajax_get/')?>/" + activity_id,
