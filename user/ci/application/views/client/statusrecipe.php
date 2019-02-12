@@ -539,7 +539,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/ClientStatusRecipe/recipe_ajax_edit/')?>/" + activity_id,
@@ -577,7 +577,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminStatus/ajax_edit/')?>/" + activity_id,
@@ -611,7 +611,7 @@
         var activity_id = button.id;
         activity_id = activity_id.replace(/\s+/g, '');
 
-        alert(activity_id);
+        // alert(activity_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/ClientStatusRecipe/recipe_ajax_delete/')?>/" + activity_id,

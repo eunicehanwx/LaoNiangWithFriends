@@ -120,6 +120,7 @@
                                 </div>
                                 <img width="350" height="240" src="<?php echo base_url() ?>assets/uploaded_image/<?php echo $article->activityimage ?>" />
                             </a>
+                            <h2 class="text-center mb-5"><?php echo $article->activityname; ?></h2>
                         </div>
                         <?php
                     }

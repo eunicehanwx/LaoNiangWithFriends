@@ -36,17 +36,32 @@ class recipeUpload extends CI_Controller{
                 $ingredient = $this->input->post('ingredient');
                 $user_data = $_SESSION['client_id'];
                 $this->recipe_upload_model->upload_image($user_data,$title,$image,$cuisine,$step,$ingredient);
-                echo "Upload Successful";
-                redirect("index.php/recipeUpload/add_new");
-
+                ?>
+                <script type="text/javascript">
+                    alert("Success");
+                    top.location.href="<?php echo base_url('index.php/recipeUpload/add_new')?>";
+                </script>
+                <?php
+//                $data = "<script type=\"text/javascript\">alert('Upload Successful');</script>";
 			}else{
 	            echo "Upload failed. Image file must be gif|jpg|png|jpeg|bmp";
+                ?>
+                <script type="text/javascript">
+                    alert("Fail");
+                    top.location.href="<?php echo base_url('index.php/recipeUpload/add_new')?>";
+                </script>
+                <?php
 	        }
-	                 
 	    }else{
 			echo "Failed, Image file is empty.";
+            ?>
+            <script type="text/javascript">
+                alert("Fail");
+                top.location.href="<?php echo base_url('index.php/recipeUpload/add_new')?>";
+            </script>
+            <?php
 		}
-				
+
 	}
 
 

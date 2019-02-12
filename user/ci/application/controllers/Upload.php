@@ -43,14 +43,30 @@ class Upload extends CI_Controller{
                 $this->upload_model->upload_image($title,$image,$category,$venue,$date,$time,$desc,$fee,$mobileno, "pending",$c_id);
 				echo "Upload Successful";
                 redirect("index.php/Upload/add_new");
-
-
+                ?>
+                <script type="text/javascript">
+                    alert("Success");
+                    top.location.href="<?php echo base_url('index.php/recipeUpload/add_new')?>";
+                </script>
+                <?php
             }else{
 	            echo "Upload failed. Image file must be gif|jpg|png|jpeg|bmp";
+                ?>
+                <script type="text/javascript">
+                    alert("Fail");
+                    top.location.href="<?php echo base_url('index.php/recipeUpload/add_new')?>";
+                </script>
+                <?php
 	        }
 	                 
 	    }else{
 			echo "Failed, Image file is empty.";
+            ?>
+            <script type="text/javascript">
+                alert("Fail");
+                top.location.href="<?php echo base_url('index.php/recipeUpload/add_new')?>";
+            </script>
+            <?php
 		}
 				
 	}
