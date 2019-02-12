@@ -355,7 +355,7 @@
                     </div>
                 </div>
 
-                <p><span id="recipe_image_v"></span></p>
+<!--                <p><span id="recipe_image_v"></span></p>-->
 
                 <div class="form-group">
                     <div class="form-label-group">
@@ -423,7 +423,7 @@
                         </div>
                     </div>
 
-                    <p><span id="recipe_image"></span></p>
+<!--                    <p><span id="recipe_image"></span></p>-->
 
                     <div class="form-group">
                         <div class="form-label-group">
@@ -445,6 +445,13 @@
                         <label for="recipe_ingredient">Ingredients</label>
                         <textarea class="form-control" name="recipe_ingredient" id="recipe_ingredient" rows="7" required></textarea>
                     </div>
+
+                    <div class="controls">
+                        <label>Upload Photo:</label>
+                        <input name="file" type="file"  id="image_file" required>
+                        <p class="help-block"></p>
+                    </div>
+
 
                     <div class = "modal-footer">
                         <button type = "button" class = "btn btn-default" data-dismiss = "modal">
@@ -519,10 +526,11 @@
                 {
                     // alert("success");
                     $('#editModal').modal('hide');
-                    $('#successModal').modal('show');
 
                     $('#btnSave').text('Save changes'); //change button text
                     $('#btnSave').attr('disabled',false); //set button enable
+
+                    alert('Successfully edited');
 
                     table.ajax.reload(null,false); //reload datatable ajax
                 },
