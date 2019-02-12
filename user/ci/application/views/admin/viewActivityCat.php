@@ -493,7 +493,7 @@
         var category_id = button.id;
         category_id = category_id.replace(/\s+/g, '');
 
-        alert(category_id);
+        // alert(category_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminActivity/ajax_cat_edit/')?>/" + category_id,
@@ -527,7 +527,7 @@
         var category_id = button.id;
         category_id = category_id.replace(/\s+/g, '');
 
-        alert(category_id);
+        // alert(category_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminActivity/ajax_cat_edit/')?>/" + category_id,
@@ -550,7 +550,7 @@
         var category_id = button.id;
         category_id = category_id.replace(/\s+/g, '');
 
-        alert(category_id);
+        // alert(category_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminActivity/ajax_cat_delete/')?>/" + category_id,

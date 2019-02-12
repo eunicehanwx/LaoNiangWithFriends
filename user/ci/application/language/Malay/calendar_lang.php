@@ -9,7 +9,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
+$lang['view_more'] = 'Lihat Lagi';
+$lang['activity2'] = 'Mencari aktiviti yang menyeronokkan seperti berjalan kaki yang sihat, permainan dan peristiwa ikatan keluarga? Klik "Lihat Lagi" untuk mempunyai senarai aktiviti yang ada di sekitar anda!';
+$lang['recipe2'] = 'Berminat untuk mempelajari lebih banyak masakan untuk orang yang sayang anda? Klik "Lihat Lagi" untuk mengetahui lebih lanjut!';
 $lang['about2'] = 'Bukan itu sahaja, anda juga boleh mencari resipi yang ingin anda pelajari! Terdapat sehingga 100 resipi yang boleh anda pelajari untuk masakan yang berlainan.';
 $lang['about1'] = 'Lao Niang dengan Kawan adalah platform untuk Anda untuk mencari aktiviti berdekatan yang anda boleh mendaftar dengan mudah dengan orang-orang tercinta anda!';
 $lang['welcome_massage'] = 'Bersama-sama, kita boleh meningkatkan pengalaman hidup untuk orang tua!';

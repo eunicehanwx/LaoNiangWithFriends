@@ -46,7 +46,9 @@
                 'welcome_massage' => $this->lang->line('welcome_massage'),
                 'about1' => $this->lang->line('about1'),
                 'about2' => $this->lang->line('about2'),
-
+                'recipe2' => $this->lang->line('recipe2'),
+                'activity2' => $this->lang->line('activity2'),
+                'view_more' => $this->lang->line('view_more'),
 
             );
 

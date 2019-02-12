@@ -542,7 +542,7 @@
         var recipe_id = button.id;
         recipe_id = recipe_id.replace(/\s+/g, '');
 
-        alert(recipe_id);
+        // alert(recipe_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminRecipe/ajax_edit/')?>/" + recipe_id,
@@ -573,7 +573,7 @@
         var recipe_id = button.id;
         recipe_id = recipe_id.replace(/\s+/g, '');
 
-        alert(recipe_id);
+        // alert(recipe_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminRecipe/ajax_edit/')?>/" + recipe_id,
@@ -619,7 +619,7 @@
         var recipe_id = id;
         recipe_id = recipe_id.replace(/\s+/g, '');
 
-        alert(recipe_id);
+        // alert(recipe_id);
         //AJAX call to get activity_id details
         $.ajax({
             url: "<?php echo site_url('index.php/AdminRecipe/ajax_update_delete/')?>/" + recipe_id,

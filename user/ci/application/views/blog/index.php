@@ -171,13 +171,13 @@
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Recipes</h2>
+              <h2 class="text-secondary text-uppercase mb-0"><?php echo $recipe; ?></h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/cuisines.jpg');?>" alt="">
-              <p class="mb-5">Interested in learning more cuisines for your dear ones? Click "View More" to learn more! </p>
+              <p class="mb-5"><?php echo $recipe2; ?></p>
                 <a href="<?php echo base_url(). "index.php/blog/cuisines/"; ?>">
                 <i class="fa fa-close"></i>
-                View More</a>
+                <?php echo $view_more; ?></a>
 
             </div>
           </div>
@@ -194,13 +194,13 @@
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Activities</h2>
+              <h2 class="text-secondary text-uppercase mb-0"><?php echo $activity; ?></h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="<?php echo base_url('assets/ui_user/img/portfolio/activities.jpg');?>" alt="">
-              <p class="mb-5">Looking for fun activities like healthy walk, family-bonding games and events? Click "View More" to have a list of available activities in your vicinity!</p>
+              <p class="mb-5"><?php echo $activity2; ?></p>
                   <a href="<?php echo base_url(). "index.php/activity_ctl/index/"; ?>">
                     <i class="fa fa-close"></i>
-                    View More</a>
+                      <?php echo $view_more; ?></a>
             </div>
           </div>
         </div>
